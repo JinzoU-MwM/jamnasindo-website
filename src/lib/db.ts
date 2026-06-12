@@ -462,9 +462,9 @@ export function seedData() {
     const sstmt = d.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)");
     sstmt.run("company_name", "PT. Jaminan Nasional Indonesia");
     sstmt.run("company_email", "admin@jamnas.id");
-    sstmt.run("company_phone", "+62 21 1234 5678");
+    sstmt.run("company_phone", "+62 812-1397-2604");
     sstmt.run("company_website", "https://jamnas.id");
-    sstmt.run("company_address", "Jl. Sudirman No. 123, Jakarta Pusat 10220");
+    sstmt.run("company_address", "Jl. Condet Raya No. 103E, Kramat Jati, Jakarta Timur, DKI Jakarta 13520");
   }
 }
 

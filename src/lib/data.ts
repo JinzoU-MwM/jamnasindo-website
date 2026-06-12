@@ -197,13 +197,13 @@ export const contactInfo: ContactInfoItem[] = [
   {
     icon: "map-pin",
     label: "Alamat",
-    value: "Jl. Kesehatan No. 10, Jakarta Pusat, DKI Jakarta 10340",
+    value: "Jl. Condet Raya No. 103E, Kramat Jati, Jakarta Timur, DKI Jakarta 13520",
   },
   {
     icon: "phone",
     label: "Telepon",
-    value: "+62 21 1234 5678",
-    href: "tel:+622112345678",
+    value: "+62 812-1397-2604",
+    href: "tel:+6281213972604",
   },
   {
     icon: "mail",

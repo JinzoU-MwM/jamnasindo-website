@@ -4,7 +4,10 @@ import { ContactForm } from "@/components/ui/ContactForm";
 import { ObservedDiv } from "@/components/ui/ObservedDiv";
 
 export const metadata = {
-  title: "Hubungi Kami | Jamnasindo",
+  title: "Hubungi Kami",
+  description:
+    "Hubungi Jamnasindo untuk konsultasi gratis perizinan travel Umroh & Haji. Jl. Condet Raya No. 103E, Kramat Jati, Jakarta Timur — Telp/WA +62 812-1397-2604.",
+  alternates: { canonical: "/kontak" },
 };
 
 export default function KontakPage() {

@@ -5,8 +5,10 @@ import { ObservedDiv } from "@/components/ui/ObservedDiv";
 
 // SEO untuk halaman ini
 export const metadata = {
-  title: "Layanan Perizinan & Administrasi Travel | Jamnasindo",
-  description: "Layanan PPIU, PIHK, IATA, Bank Garansi, dll.",
+  title: "Layanan Perizinan & Administrasi Travel",
+  description:
+    "Layanan lengkap Jamnasindo: perizinan PPIU & PIHK, akreditasi, keanggotaan IATA, bank garansi, surety bond, dan laporan keuangan untuk bisnis travel Umroh & Haji.",
+  alternates: { canonical: "/layanan" },
 };
 
 export default function LayananPage() {

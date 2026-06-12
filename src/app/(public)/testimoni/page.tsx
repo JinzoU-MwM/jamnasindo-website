@@ -3,7 +3,10 @@ import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { ObservedDiv } from "@/components/ui/ObservedDiv";
 
 export const metadata = {
-  title: "Testimoni Klien | Jamnasindo",
+  title: "Testimoni Klien",
+  description:
+    "Apa kata klien Jamnasindo: pengalaman travel Umroh & Haji yang berhasil mengurus PPIU, PIHK, IATA, dan administrasi bisnisnya bersama kami.",
+  alternates: { canonical: "/testimoni" },
 };
 
 export default function TestimoniPage() {
