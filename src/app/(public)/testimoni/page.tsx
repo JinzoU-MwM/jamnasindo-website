@@ -3,7 +3,7 @@ import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { ObservedDiv } from "@/components/ui/ObservedDiv";
 
 export const metadata = {
-  title: "Testimoni Klien | MitraSolusi",
+  title: "Testimoni Klien | Jamnasindo",
 };
 
 export default function TestimoniPage() {

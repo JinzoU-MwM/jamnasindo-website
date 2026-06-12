@@ -23,14 +23,14 @@ export function HeroSection() {
       <div
         className="absolute left-10 top-1/4 h-64 w-64 rounded-full opacity-10"
         style={{
-          background: "radial-gradient(circle, #A3E635, transparent)",
+          background: "radial-gradient(circle, #129447, transparent)",
           filter: "blur(80px)",
         }}
       />
       <div
         className="absolute bottom-1/4 right-10 h-80 w-80 rounded-full opacity-10"
         style={{
-          background: "radial-gradient(circle, #A3E635, transparent)",
+          background: "radial-gradient(circle, #129447, transparent)",
           filter: "blur(80px)",
         }}
       />

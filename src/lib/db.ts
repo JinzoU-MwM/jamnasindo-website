@@ -408,9 +408,9 @@ export function seedData() {
   }
 
   const testimonialRows = [
-    { initials: "AR", name: "Ahmad Rahman", company: "PT Al-Haramain Travel", quote: "MitraSolusi sangat profesional. Proses PPIU kami selesai lebih cepat dari perkiraan. Tim mereka selalu responsif dan informatif." },
+    { initials: "AR", name: "Ahmad Rahman", company: "PT Al-Haramain Travel", quote: "Jamnasindo sangat profesional. Proses PPIU kami selesai lebih cepat dari perkiraan. Tim mereka selalu responsif dan informatif." },
     { initials: "SN", name: "Siti Nurhaliza", company: "CV Barokah Umrah", quote: "Saya sangat terbantu dengan layanan administrasi mereka. Laporan keuangan jadi rapi dan sesuai standar. Sangat direkomendasikan." },
-    { initials: "HW", name: "Hadi Wijaya", company: "PT Madinah Indah Travel", quote: "Pengurusan IATA kami berjalan mulus berkat MitraSolusi. Tim mereka paham betul regulasi dan proses birokrasi." },
+    { initials: "HW", name: "Hadi Wijaya", company: "PT Madinah Indah Travel", quote: "Pengurusan IATA kami berjalan mulus berkat Jamnasindo. Tim mereka paham betul regulasi dan proses birokrasi." },
   ];
 
   const tstmt = d.prepare(
@@ -460,10 +460,10 @@ export function seedData() {
   const settingsCount = (d.prepare("SELECT COUNT(*) as count FROM settings").get() as { count: number }).count;
   if (settingsCount === 0) {
     const sstmt = d.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)");
-    sstmt.run("company_name", "PT. MitraSolusi Indonesia");
-    sstmt.run("company_email", "admin@mitrasolusi.co.id");
+    sstmt.run("company_name", "PT. Jaminan Nasional Indonesia");
+    sstmt.run("company_email", "admin@jamnas.id");
     sstmt.run("company_phone", "+62 21 1234 5678");
-    sstmt.run("company_website", "https://mitrasolusi.co.id");
+    sstmt.run("company_website", "https://jamnas.id");
     sstmt.run("company_address", "Jl. Sudirman No. 123, Jakarta Pusat 10220");
   }
 }

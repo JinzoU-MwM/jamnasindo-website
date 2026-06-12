@@ -15,7 +15,7 @@ export function WhyChooseUsSection() {
           <SectionHeader
             badge="Mengapa Kami"
             title="Keunggulan"
-            highlight="MitraSolusi"
+            highlight="Jamnasindo"
           />
         </ObservedDiv>
 

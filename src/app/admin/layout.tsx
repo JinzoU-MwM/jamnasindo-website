@@ -2,7 +2,7 @@ import { AdminSidebar } from "@/components/admin/Sidebar";
 import { AdminHeader } from "@/components/admin/Header";
 
 export const metadata = {
-  title: "Admin Panel | MitraSolusi",
+  title: "Admin Panel | Jamnasindo",
 };
 
 export default function AdminLayout({

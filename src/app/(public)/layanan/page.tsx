@@ -5,7 +5,7 @@ import { ObservedDiv } from "@/components/ui/ObservedDiv";
 
 // SEO untuk halaman ini
 export const metadata = {
-  title: "Layanan Perizinan & Administrasi Travel | MitraSolusi",
+  title: "Layanan Perizinan & Administrasi Travel | Jamnasindo",
   description: "Layanan PPIU, PIHK, IATA, Bank Garansi, dll.",
 };
 

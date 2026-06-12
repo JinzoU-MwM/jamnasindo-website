@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/ui/ContactForm";
 import { ObservedDiv } from "@/components/ui/ObservedDiv";
 
 export const metadata = {
-  title: "Hubungi Kami | MitraSolusi",
+  title: "Hubungi Kami | Jamnasindo",
 };
 
 export default function KontakPage() {

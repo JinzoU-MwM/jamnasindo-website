@@ -96,7 +96,7 @@ h6 {
 }
 
 .shimmer-text {
-    background: linear-gradient(90deg, #a3e635 0%, #fff 50%, #a3e635 100%);
+    background: linear-gradient(90deg, #129447 0%, #fff 50%, #129447 100%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -115,7 +115,7 @@ h6 {
     left: 0;
     width: 0;
     height: 2px;
-    background: #a3e635;
+    background: #129447;
     transition: width 0.3s ease;
 }
 
@@ -124,7 +124,7 @@ h6 {
 }
 
 .nav-link:hover {
-    color: #a3e635;
+    color: #129447;
 }
 
 /* Observe fade transitions */
@@ -153,7 +153,7 @@ h6 {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #a3e635, transparent);
+    background: linear-gradient(90deg, transparent, #129447, transparent);
     opacity: 0;
     transition: opacity 0.5s;
 }
@@ -169,7 +169,7 @@ h6 {
 }
 
 .service-card:hover .service-icon {
-    color: #a3e635;
+    color: #129447;
     transform: scale(1.1);
 }
 
@@ -204,12 +204,12 @@ h6 {
     top: 24px;
     bottom: 24px;
     width: 2px;
-    background: linear-gradient(to bottom, #a3e635, rgba(163, 230, 53, 0.1));
+    background: linear-gradient(to bottom, #129447, rgba(163, 230, 53, 0.1));
 }
 
 /* Stat hover */
 .stat-item:hover .stat-number {
-    color: #a3e635;
+    color: #129447;
 }
 
 .stat-number {

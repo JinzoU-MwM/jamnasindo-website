@@ -29,15 +29,19 @@ export function Navbar() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-lime-400">
-              <Icon name="layers" size={24} className="text-black" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white p-1">
+              <img
+                src="/logo-mark.png"
+                alt="Jamnasindo"
+                className="h-full w-full object-contain"
+              />
             </div>
             <div>
               <span className="font-heading text-lg font-bold text-white">
-                MitraSolusi
+                Jamnasindo
               </span>
               <span className="block text-[10px] leading-none tracking-[0.2em] uppercase text-neutral-500">
-                Konsultan Travel Ibadah
+                Grow Ur Business With Us
               </span>
             </div>
           </Link>

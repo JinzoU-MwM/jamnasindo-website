@@ -10,7 +10,7 @@ export function ScrollProgress() {
       className="fixed top-0 left-0 z-[100] h-[3px] transition-[width] duration-75"
       style={{
         width: `${progress}%`,
-        background: "linear-gradient(90deg, #A3E635, #84cc16)",
+        background: "linear-gradient(90deg, #129447, #84cc16)",
       }}
     />
   );

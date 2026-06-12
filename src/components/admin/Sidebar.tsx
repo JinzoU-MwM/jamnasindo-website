@@ -29,7 +29,7 @@ export function AdminSidebar() {
         </div>
         <div>
           <h1 className="font-heading font-bold text-white text-sm">
-            MitraSolusi
+            Jamnasindo
           </h1>
           <span className="text-[10px] text-neutral-500 uppercase tracking-widest">
             Admin Panel

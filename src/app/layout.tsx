@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MitraSolusi — Konsultan Travel Umroh & Haji",
+  title: "Jamnasindo — Konsultan Travel Umroh & Haji",
   description: "Solusi lengkap perizinan dan administrasi...",
 };
 

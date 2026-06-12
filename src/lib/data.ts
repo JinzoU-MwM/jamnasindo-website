@@ -175,7 +175,7 @@ export const testimonials: Testimonial[] = [
     name: "Ahmad Rahman",
     company: "PT Al-Haramain Travel",
     quote:
-      "MitraSolusi sangat profesional. Proses PPIU kami selesai lebih cepat dari perkiraan. Tim mereka selalu responsif dan informatif.",
+      "Jamnasindo sangat profesional. Proses PPIU kami selesai lebih cepat dari perkiraan. Tim mereka selalu responsif dan informatif.",
   },
   {
     initials: "SN",
@@ -189,7 +189,7 @@ export const testimonials: Testimonial[] = [
     name: "Hadi Wijaya",
     company: "PT Madinah Indah Travel",
     quote:
-      "Pengurusan IATA kami berjalan mulus berkat MitraSolusi. Tim mereka paham betul regulasi dan proses birokrasi.",
+      "Pengurusan IATA kami berjalan mulus berkat Jamnasindo. Tim mereka paham betul regulasi dan proses birokrasi.",
   },
 ];
 
@@ -208,8 +208,8 @@ export const contactInfo: ContactInfoItem[] = [
   {
     icon: "mail",
     label: "Email",
-    value: "info@mitrasolusi.co.id",
-    href: "mailto:info@mitrasolusi.co.id",
+    value: "info@jamnas.id",
+    href: "mailto:info@jamnas.id",
   },
   {
     icon: "clock",

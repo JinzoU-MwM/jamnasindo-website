@@ -13,7 +13,7 @@ export function TestimonialsSection() {
       <div
         className="absolute bottom-0 left-0 h-96 w-96 rounded-full opacity-5"
         style={{
-          background: "radial-gradient(circle, #A3E635, transparent)",
+          background: "radial-gradient(circle, #129447, transparent)",
           filter: "blur(80px)",
         }}
       />
