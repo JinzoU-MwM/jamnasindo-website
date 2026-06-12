@@ -11,7 +11,7 @@ through an existing Cloudflare Tunnel.
 
 ## Constraints / context
 
-- App: Next.js 14, built/run with `next build` / `next start` (port 3000).
+- App: Next.js 14, built/run with `next build` / `next start` (port 3100).
 - DB: `better-sqlite3` (native module) writing `data.db` in `process.cwd()`;
   schema auto-creates and seeds on first run. `data.db` is gitignored and lives
   on the server — it must persist across deploys.
@@ -39,8 +39,8 @@ git push origin main
            npm ci
            npm run build
            sudo systemctl restart jamnasindo
-  jamnasindo.service ──► next start :3000
-  existing cloudflared tunnel ──► jamnas.id (+ www) ► http://localhost:3000
+  jamnasindo.service ──► next start :3100
+  existing cloudflared tunnel ──► jamnas.id (+ www) ► http://localhost:3100
 ```
 
 ## Key safety points

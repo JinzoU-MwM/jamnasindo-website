@@ -15,8 +15,8 @@ https://jamnas.id through your existing Cloudflare Tunnel.
    - `npm ci`
    - `npm run build`
    - `sudo systemctl restart jamnasindo`
-5. `jamnasindo.service` runs `next start` on port `3000`.
-6. The Cloudflare Tunnel routes `jamnas.id` → `http://localhost:3000`.
+5. `jamnasindo.service` runs `next start` on port `3100`.
+6. The Cloudflare Tunnel routes `jamnas.id` → `http://localhost:3100`.
 
 The SQLite database (`data.db`) lives in `/opt/jamnasindo/app` and is **never**
 touched by deploys — it's gitignored and we never run `git clean`.
@@ -51,9 +51,9 @@ Your tunnel already exists, so just add two ingress rules — see
 # ~/.cloudflared/config.yml  (catch-all 404 stays LAST)
 ingress:
   - hostname: jamnas.id
-    service: http://localhost:3000
+    service: http://localhost:3100
   - hostname: www.jamnas.id
-    service: http://localhost:3000
+    service: http://localhost:3100
   - service: http_status:404
 ```
 
