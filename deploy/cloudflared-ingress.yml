@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+# Cloudflare Tunnel ingress for jamnas.id  ->  this Next.js app on :3000
+#
+# Your tunnel ALREADY exists, so DON'T create a new one. Just merge the two
+# hostname rules below into the `ingress:` list of your existing
+# ~/.cloudflared/config.yml, keeping the catch-all 404 rule LAST.
+# ---------------------------------------------------------------------------
+
+# A complete config.yml after merging looks like:
+#
+#   tunnel: <YOUR_TUNNEL_NAME_OR_UUID>
+#   credentials-file: /home/<user>/.cloudflared/<UUID>.json
+#
+#   ingress:
+#     - hostname: jamnas.id
+#       service: http://localhost:3000
+#     - hostname: www.jamnas.id
+#       service: http://localhost:3000
+#     # ...any other hostnames you already serve through this tunnel...
+#     - service: http_status:404      # <-- catch-all MUST stay last
+
+# Then create the DNS routes (CNAMEs into the tunnel) and restart cloudflared:
+#
+#   cloudflared tunnel route dns <YOUR_TUNNEL_NAME_OR_UUID> jamnas.id
+#   cloudflared tunnel route dns <YOUR_TUNNEL_NAME_OR_UUID> www.jamnas.id
+#   sudo systemctl restart cloudflared
+#
+# Verify:
+#   cloudflared tunnel info <YOUR_TUNNEL_NAME_OR_UUID>
+#   curl -I https://jamnas.id

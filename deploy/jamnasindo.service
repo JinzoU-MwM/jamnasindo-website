@@ -1,0 +1,20 @@
+# Managed by scripts/bootstrap.sh — the __PLACEHOLDERS__ are filled in at install
+# time and the result is written to /etc/systemd/system/jamnasindo.service.
+[Unit]
+Description=Jamnasindo website (Next.js)
+After=network.target
+
+[Service]
+Type=simple
+User=__USER__
+WorkingDirectory=__APP_DIR__
+Environment=NODE_ENV=production
+Environment=PORT=__PORT__
+# Run Next's production server directly (no npm wrapper) for clean signal handling.
+# data.db is created/kept in WorkingDirectory and must stay writable.
+ExecStart=__NODE__ __APP_DIR__/node_modules/.bin/next start -p __PORT__
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

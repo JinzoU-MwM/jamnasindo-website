@@ -1,0 +1,6 @@
+# Keep shell scripts and unix config LF-only so they run on the Linux VPS,
+# regardless of the committer's core.autocrlf setting.
+*.sh       text eol=lf
+*.service  text eol=lf
+*.yml      text eol=lf
+*.yaml     text eol=lf

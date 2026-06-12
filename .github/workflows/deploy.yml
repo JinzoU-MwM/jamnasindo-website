@@ -1,0 +1,26 @@
+name: Deploy to VPS
+
+# Push to main -> the self-hosted runner on jni-server-lan builds & restarts
+# the app. The runner polls GitHub outbound, so this works even though the box
+# is behind NAT (same no-exposed-ports philosophy as the Cloudflare Tunnel).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never run two deploys at once; let an in-flight deploy finish first.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    timeout-minutes: 15
+    steps:
+      # No actions/checkout on purpose: we deploy the STABLE clone at
+      # /opt/jamnasindo/app, not the runner's volatile workspace, so the
+      # gitignored data.db survives every deploy.
+      # If you change APP_DIR in scripts/bootstrap.sh, update this path too.
+      - name: Build & restart on the VPS
+        run: /opt/jamnasindo/app/scripts/deploy.sh
