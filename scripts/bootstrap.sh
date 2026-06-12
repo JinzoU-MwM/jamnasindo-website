@@ -46,7 +46,9 @@ require_not_root() {
 
 install_packages() {
   log "Installing base packages (git, build tools, python3 for better-sqlite3)"
-  sudo apt-get update -y
+  # An unrelated broken third-party apt source (e.g. anydesk) can make `update`
+  # exit non-zero; our packages come from the main Ubuntu repos, so don't abort.
+  sudo apt-get update -y || warn "apt-get update had errors (unrelated repo?) — continuing"
   sudo apt-get install -y ca-certificates curl git build-essential python3
 }
 
