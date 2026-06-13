@@ -3,6 +3,11 @@
 // Memakai model section yang sama dengan artikel agar renderer konsisten.
 import type { ArticleSection } from "./articles";
 
+export interface ServiceFaq {
+  question: string;
+  answer: string;
+}
+
 export interface ServiceDetail {
   slug: string;
   metaTitle: string;
@@ -10,6 +15,7 @@ export interface ServiceDetail {
   keywords: string[];
   summary: string; // paragraf pembuka (lead)
   sections: ArticleSection[];
+  faq: ServiceFaq[]; // dirender + di-inject sebagai FAQPage JSON-LD
 }
 
 export const serviceDetails: Record<string, ServiceDetail> = {
@@ -64,6 +70,23 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         text: "Penyebab paling umum proses PPIU molor adalah berkas yang kurang lengkap atau tidak sesuai format. Jamnasindo memastikan dokumen Anda rapi sejak awal sehingga pengajuan berjalan tanpa bolak-balik revisi.",
       },
     ],
+    faq: [
+      {
+        question: "Apakah travel umroh wajib punya izin PPIU?",
+        answer:
+          "Ya. Setiap perusahaan yang memberangkatkan jamaah umroh wajib memiliki izin PPIU dari Kementerian Agama. Tanpa izin ini kegiatan tergolong ilegal dan berisiko sanksi.",
+      },
+      {
+        question: "Berapa lama proses pengurusan izin PPIU?",
+        answer:
+          "Tergantung kelengkapan dokumen dan antrean verifikasi Kemenag. Dengan pendampingan agar berkas lengkap dan sesuai sejak awal, proses berjalan jauh lebih cepat tanpa revisi berulang.",
+      },
+      {
+        question: "Apa syarat badan hukum untuk PPIU?",
+        answer:
+          "Perusahaan harus berbadan hukum PT yang dimiliki dan dikelola WNI beragama Islam, memiliki izin biro perjalanan wisata via OSS dengan KBLI yang sesuai, kantor pelayanan yang jelas, serta jaminan bank garansi.",
+      },
+    ],
   },
 
   pihk: {
@@ -111,6 +134,18 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         text: "Bangun rekam jejak PPIU yang bersih dan terdokumentasi sejak awal. Riwayat operasional yang rapi sangat mempermudah peningkatan ke PIHK di kemudian hari.",
       },
     ],
+    faq: [
+      {
+        question: "Apa beda PIHK dan PPIU?",
+        answer:
+          "PPIU adalah izin untuk menyelenggarakan perjalanan ibadah umroh, sedangkan PIHK adalah izin untuk menyelenggarakan ibadah haji khusus (ONH Plus).",
+      },
+      {
+        question: "Apakah harus punya PPIU dulu sebelum mengurus PIHK?",
+        answer:
+          "Umumnya ya. Travel mengurus dan menjalankan izin PPIU terlebih dahulu, lalu meningkat ke PIHK setelah memenuhi syarat pengalaman operasional dan akreditasi yang ditetapkan Kemenag.",
+      },
+    ],
   },
 
   akreditasi: {
@@ -150,6 +185,18 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         type: "tip",
         text: "Dokumentasikan setiap proses operasional secara rapi sepanjang tahun, bukan hanya menjelang asesmen. Kesiapan berkelanjutan jauh lebih ringan daripada mengejar dokumen di saat-saat akhir.",
+      },
+    ],
+    faq: [
+      {
+        question: "Apa itu akreditasi PPIU/PIHK?",
+        answer:
+          "Akreditasi adalah penilaian mutu penyelenggaraan travel ibadah terhadap standar layanan, manajemen, dan kepatuhan. Nilai akreditasi yang baik menjadi syarat peningkatan izin sekaligus bukti kredibilitas.",
+      },
+      {
+        question: "Apa itu surveilance dan kenapa penting?",
+        answer:
+          "Surveilance adalah pengawasan berkala setelah izin terbit untuk memastikan operasional tetap sesuai regulasi. Temuan yang tidak ditangani bisa menurunkan nilai akreditasi hingga sanksi.",
       },
     ],
   },
@@ -197,6 +244,18 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         text: "Siapkan aspek finansial dan jaminan sejak dini — bagian ini sering menjadi penentu kelancaran proses akreditasi IATA.",
       },
     ],
+    faq: [
+      {
+        question: "Apa manfaat akreditasi IATA untuk travel?",
+        answer:
+          "Dengan akreditasi IATA, travel dapat menerbitkan tiket maskapai internasional secara langsung melalui sistem standar industri — lebih cepat, lebih banyak pilihan maskapai, dan margin lebih sehat dibanding lewat perantara.",
+      },
+      {
+        question: "Apa syarat utama mendaftar IATA?",
+        answer:
+          "Badan usaha resmi dengan legalitas sah, kesiapan finansial dan jaminan sesuai ketentuan IATA, SDM ticketing yang berkualifikasi, serta kantor dan sistem operasional yang memenuhi standar verifikasi.",
+      },
+    ],
   },
 
   keuangan: {
@@ -230,6 +289,18 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         type: "tip",
         text: "Pisahkan dana operasional dan dana jamaah sejak awal. Pemisahan yang disiplin membuat laporan keuangan jauh lebih sehat dan kredibel.",
+      },
+    ],
+    faq: [
+      {
+        question: "Apakah laporan keuangan wajib untuk travel umroh?",
+        answer:
+          "Laporan keuangan yang tersusun sesuai standar menjadi syarat penting dalam perizinan dan akreditasi travel ibadah, sekaligus alat kontrol arus kas dan bukti akuntabilitas kepada jamaah serta regulator.",
+      },
+      {
+        question: "Apakah Jamnasindo bisa merapikan pembukuan yang berantakan?",
+        answer:
+          "Bisa. Kami melakukan perapian pembukuan, rekonsiliasi transaksi, dan menyusun laporan keuangan sesuai standar yang berlaku, termasuk untuk kebutuhan perizinan dan audit.",
       },
     ],
   },
@@ -266,6 +337,18 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         type: "tip",
         text: "Catat dan arsipkan bukti transaksi secara tertib setiap bulan. Administrasi pajak yang rapi sepanjang tahun mencegah masalah saat pelaporan.",
+      },
+    ],
+    faq: [
+      {
+        question: "Apa saja kewajiban pajak travel umroh?",
+        answer:
+          "Sebagai badan usaha, travel ibadah memiliki kewajiban perhitungan dan pelaporan pajak sesuai ketentuan terbaru, termasuk penyampaian SPT tepat waktu. Jamnasindo menangani perhitungan, pelaporan, dan kepatuhannya.",
+      },
+      {
+        question: "Apa risiko jika tidak patuh pajak?",
+        answer:
+          "Ketidakpatuhan dapat berujung pada denda, sanksi, hingga gangguan operasional. Pengelolaan pajak yang baik memberi kepastian dan melindungi reputasi bisnis travel Anda.",
       },
     ],
   },
@@ -308,6 +391,18 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         text: "Urus bank garansi sejak tahap awal perizinan agar tidak menjadi penghambat di akhir proses pengajuan izin.",
       },
     ],
+    faq: [
+      {
+        question: "Apa fungsi bank garansi dalam perizinan travel?",
+        answer:
+          "Bank garansi adalah jaminan tertulis dari bank bahwa travel mampu memenuhi kewajiban finansial tertentu. Dalam perizinan PPIU/PIHK, jaminan ini melindungi jamaah sekaligus menjadi bukti kapasitas finansial penyelenggara.",
+      },
+      {
+        question: "Berapa nilai bank garansi yang dibutuhkan?",
+        answer:
+          "Nilai dan jenis jaminan mengikuti ketentuan regulasi yang berlaku. Jamnasindo membantu mengonsultasikan kebutuhan dan mengurus penerbitannya ke lembaga perbankan.",
+      },
+    ],
   },
 
   "surety-bond": {
@@ -346,6 +441,18 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         type: "tip",
         text: "Bandingkan syarat dan biaya antara bank garansi dan surety bond sebelum memutuskan. Pilihan yang tepat bisa menghemat biaya sekaligus mempercepat proses.",
+      },
+    ],
+    faq: [
+      {
+        question: "Apa beda surety bond dan bank garansi?",
+        answer:
+          "Keduanya sama-sama jaminan finansial. Bedanya umumnya pada penerbit (perusahaan penjamin/asuransi vs bank), mekanisme, dan persyaratan. Surety bond sering menjadi alternatif yang lebih fleksibel.",
+      },
+      {
+        question: "Apakah surety bond bisa menggantikan bank garansi?",
+        answer:
+          "Dalam banyak kasus surety bond dapat menjadi alternatif jaminan, tergantung ketentuan yang berlaku dan kebutuhan perusahaan. Jamnasindo membantu menimbang opsi terbaik untuk Anda.",
       },
     ],
   },

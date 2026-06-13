@@ -142,6 +142,18 @@ export default function LayananDetailPage({
           },
         ],
       },
+      ...(detail?.faq?.length
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: detail.faq.map((f) => ({
+                "@type": "Question",
+                name: f.question,
+                acceptedAnswer: { "@type": "Answer", text: f.answer },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -198,6 +210,35 @@ export default function LayananDetailPage({
               </article>
             </ObservedDiv>
           )}
+
+          {/* FAQ */}
+          {detail?.faq?.length ? (
+            <ObservedDiv>
+              <div className="mt-16">
+                <h2 className="font-heading font-bold text-2xl md:text-3xl text-white mb-6">
+                  Pertanyaan Umum tentang {service.title}
+                </h2>
+                <div className="space-y-4">
+                  {detail.faq.map((f, i) => (
+                    <details
+                      key={i}
+                      className="group rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition-colors hover:border-lime-400/40 [&_summary::-webkit-details-marker]:hidden"
+                    >
+                      <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading font-bold text-white">
+                        <span>{f.question}</span>
+                        <span className="text-lime-400 transition-transform duration-300 group-open:rotate-45">
+                          +
+                        </span>
+                      </summary>
+                      <p className="mt-4 text-neutral-400 leading-relaxed">
+                        {f.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            </ObservedDiv>
+          ) : null}
 
           {/* CTA */}
           <ObservedDiv>
