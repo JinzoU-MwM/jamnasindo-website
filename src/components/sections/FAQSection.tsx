@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { faqItems } from "@/lib/faq";
 import { ObservedDiv } from "@/components/ui/ObservedDiv";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 
 export function FAQSection() {
   const jsonLd = {
@@ -41,23 +42,9 @@ export function FAQSection() {
           </div>
         </ObservedDiv>
 
-        <div className="space-y-4">
-          {faqItems.map((item, i) => (
-            <ObservedDiv key={i} delay={i * 60}>
-              <details className="group rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition-colors hover:border-lime-400/40 [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading font-bold text-white">
-                  <span>{item.question}</span>
-                  <span className="text-lime-400 transition-transform duration-300 group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-4 text-neutral-400 leading-relaxed">
-                  {item.answer}
-                </p>
-              </details>
-            </ObservedDiv>
-          ))}
-        </div>
+        <ObservedDiv>
+          <FaqAccordion items={faqItems} />
+        </ObservedDiv>
 
         <ObservedDiv>
           <p className="mt-10 text-center text-neutral-400">

@@ -6,6 +6,7 @@ import { getServiceDetail } from "@/lib/serviceDetails";
 import type { ArticleSection } from "@/lib/articles";
 import { Icon } from "@/components/ui/icon";
 import { ObservedDiv } from "@/components/ui/ObservedDiv";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 
 const SITE_URL = "https://jamnas.id";
 
@@ -218,24 +219,7 @@ export default function LayananDetailPage({
                 <h2 className="font-heading font-bold text-2xl md:text-3xl text-white mb-6">
                   Pertanyaan Umum tentang {service.title}
                 </h2>
-                <div className="space-y-4">
-                  {detail.faq.map((f, i) => (
-                    <details
-                      key={i}
-                      className="group rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition-colors hover:border-lime-400/40 [&_summary::-webkit-details-marker]:hidden"
-                    >
-                      <summary className="flex cursor-pointer items-center justify-between gap-4 font-heading font-bold text-white">
-                        <span>{f.question}</span>
-                        <span className="text-lime-400 transition-transform duration-300 group-open:rotate-45">
-                          +
-                        </span>
-                      </summary>
-                      <p className="mt-4 text-neutral-400 leading-relaxed">
-                        {f.answer}
-                      </p>
-                    </details>
-                  ))}
-                </div>
+                <FaqAccordion items={detail.faq} />
               </div>
             </ObservedDiv>
           ) : null}
