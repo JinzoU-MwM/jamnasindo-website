@@ -8,21 +8,16 @@ interface FaqItem {
 }
 
 export function FaqAccordion({ items }: { items: FaqItem[] }) {
-  // toggle independen per item (boleh buka beberapa sekaligus)
-  const [openSet, setOpenSet] = useState<Set<number>>(new Set());
+  // single-open: buka satu otomatis menutup yang lain
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (i: number) =>
-    setOpenSet((prev) => {
-      const next = new Set(prev);
-      if (next.has(i)) next.delete(i);
-      else next.add(i);
-      return next;
-    });
+    setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
     <div className="space-y-4">
       {items.map((item, i) => {
-        const isOpen = openSet.has(i);
+        const isOpen = openIndex === i;
         return (
           <div
             key={i}
