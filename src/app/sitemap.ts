@@ -1,9 +1,13 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/lib/articles";
+import { serviceCategories } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://jamnas.id";
   const lastModified = new Date();
+  const serviceSlugs = serviceCategories.flatMap((c) =>
+    c.services.map((s) => s.id),
+  );
   return [
     { url: `${base}/`, lastModified, changeFrequency: "weekly", priority: 1 },
     {
@@ -12,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    ...serviceSlugs.map((slug) => ({
+      url: `${base}/layanan/${slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     {
       url: `${base}/artikel`,
       lastModified,

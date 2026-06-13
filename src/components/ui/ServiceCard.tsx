@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ServiceItem } from "@/types";
 import { Icon } from "./icon";
 
@@ -14,7 +15,10 @@ export function ServiceCard({
 }: ServiceCardProps) {
   if (variant === "compact") {
     return (
-      <div className="service-card rounded-2xl border border-white/5 bg-neutral-900 p-8">
+      <Link
+        href={`/layanan/${service.id}`}
+        className="service-card block rounded-2xl border border-white/5 bg-neutral-900 p-8"
+      >
         <div className="service-icon mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 text-white">
           <Icon name={service.icon} size={28} />
         </div>
@@ -25,12 +29,15 @@ export function ServiceCard({
         <div className="service-arrow mt-auto">
           <Icon name="arrow-right" size={20} className="text-lime-400" />
         </div>
-      </div>
+      </Link>
     );
   }
 
   return (
-    <div className="service-card rounded-2xl border border-white/5 bg-neutral-900 p-8">
+    <Link
+      href={`/layanan/${service.id}`}
+      className="service-card block rounded-2xl border border-white/5 bg-neutral-900 p-8"
+    >
       <div className="mb-6 flex items-start justify-between">
         <div className="service-icon flex h-14 w-14 items-center justify-center rounded-xl bg-white/5 text-white">
           <Icon name={service.icon} size={28} />
@@ -55,6 +62,6 @@ export function ServiceCard({
           ))}
         </div>
       )}
-    </div>
+    </Link>
   );
 }
