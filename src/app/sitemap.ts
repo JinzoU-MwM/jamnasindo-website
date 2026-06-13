@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { articles } from "@/lib/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://jamnas.id";
@@ -11,6 +12,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${base}/artikel`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    ...articles.map((article) => ({
+      url: `${base}/artikel/${article.slug}`,
+      lastModified: new Date(`${article.date}T00:00:00+07:00`),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     {
       url: `${base}/testimoni`,
       lastModified,
