@@ -13,6 +13,11 @@
 
 set -euo pipefail
 
+# Build dengan node yang SAMA dengan runtime systemd (/usr/bin/node = v24).
+# Tanpa ini, runner (nvm v22) membangun better-sqlite3 untuk ABI berbeda dari
+# node service → "Module did not self-register" di API route saat runtime.
+export PATH="/usr/bin:$PATH"
+
 APP_DIR="${APP_DIR:-/opt/jamnasindo/app}"
 BRANCH="${DEPLOY_BRANCH:-main}"
 SERVICE="${SERVICE_NAME:-jamnasindo}"
@@ -26,8 +31,11 @@ main() {
   git reset --hard "origin/$BRANCH"
   # NOTE: deliberately NO `git clean` here — it would delete data.db.
 
-  echo "==> Installing dependencies (npm ci)"
+  echo "==> Installing dependencies (npm ci) with $(node -v)"
   npm ci
+
+  echo "==> Rebuilding native modules for runtime node ($(node -v))"
+  npm rebuild better-sqlite3
 
   echo "==> Building (npm run build)"
   npm run build

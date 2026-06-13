@@ -6,6 +6,9 @@ import {
   deleteClient,
 } from "@/lib/db";
 
+// Route baca query param (searchParams) → dinamis, jangan dirender statis.
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
