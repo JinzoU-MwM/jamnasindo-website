@@ -42,7 +42,7 @@ export function generateMetadata({
       description,
       url: `${SITE_URL}/layanan/${params.slug}`,
       type: "article",
-      images: [{ url: "/og.png", width: 1200, height: 630 }],
+      images: [{ url: "/og.png?v=2", width: 1200, height: 630 }],
     },
   };
 }

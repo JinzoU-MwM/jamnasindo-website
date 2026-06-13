@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/og.png",
+        url: "/og.png?v=2",
         width: 1200,
         height: 630,
         alt: "Jamnasindo — grow ur business with us",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jamnasindo — Konsultan Perizinan Travel Umroh & Haji",
     description: SITE_DESCRIPTION,
-    images: ["/og.png"],
+    images: ["/og.png?v=2"],
   },
   robots: {
     index: true,
