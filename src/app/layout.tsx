@@ -94,6 +94,8 @@ const jsonLd = {
       telephone: "+6281213972604",
       email: "info@jamnas.id",
       priceRange: "$$",
+      sameAs: ["https://www.google.com/search?kgmid=/g/11v51xwqhz"],
+      hasMap: "https://share.google/X29XOELokrZ70DiSa",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Jl. Condet Raya No. 103E",
