@@ -4,6 +4,7 @@ import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { WhyChooseUsSection } from "@/components/sections/WhyChooseUsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { FAQSection } from "@/components/sections/FAQSection";
 import { CTASection } from "@/components/sections/CTASection";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       <ProcessSection />
       <WhyChooseUsSection />
       <TestimonialsSection />
+      <FAQSection />
       <CTASection />
     </>
   );

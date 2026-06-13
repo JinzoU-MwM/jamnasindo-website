@@ -7,7 +7,8 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <img
           src="https://picsum.photos/seed/makkah-hajj/1920/1080.jpg"
-          alt="Background"
+          alt="Suasana ibadah umroh dan haji di Tanah Suci"
+          fetchPriority="high"
           className="h-full w-full object-cover"
         />
         <div

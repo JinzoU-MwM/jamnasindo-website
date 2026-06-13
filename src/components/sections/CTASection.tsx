@@ -44,7 +44,7 @@ export function CTASection() {
               <Icon name="arrow-right" size={20} />
             </a>
             <a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6281213972604?text=Halo%20Jamnasindo%2C%20saya%20ingin%20konsultasi%20perizinan%20travel%20umroh"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-14 items-center justify-center gap-2 rounded-lg border border-white/20 px-8 text-base font-bold text-white transition-all duration-300 hover:bg-white/5"

@@ -106,27 +106,56 @@ export default function ArtikelDetailPage({
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.description,
-    datePublished: article.date,
-    dateModified: article.date,
-    inLanguage: "id-ID",
-    image: `${SITE_URL}/og.png`,
-    mainEntityOfPage: `${SITE_URL}/artikel/${article.slug}`,
-    author: {
-      "@type": "Organization",
-      name: "Jamnasindo",
-      url: SITE_URL,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "PT. Jaminan Nasional Indonesia",
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/logo.png`,
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: article.title,
+        description: article.description,
+        datePublished: article.date,
+        dateModified: article.date,
+        inLanguage: "id-ID",
+        image: `${SITE_URL}/og.png`,
+        keywords: article.keywords.join(", "),
+        articleSection: article.category,
+        mainEntityOfPage: `${SITE_URL}/artikel/${article.slug}`,
+        author: {
+          "@type": "Organization",
+          name: "Jamnasindo",
+          url: SITE_URL,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "PT. Jaminan Nasional Indonesia",
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_URL}/logo.png`,
+          },
+        },
       },
-    },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Beranda",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Artikel",
+            item: `${SITE_URL}/artikel`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.title,
+            item: `${SITE_URL}/artikel/${article.slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (

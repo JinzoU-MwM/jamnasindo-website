@@ -1,5 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: "#0d7334",
+};
 
 const SITE_URL = "https://jamnas.id";
 const SITE_NAME = "Jamnasindo";
@@ -27,7 +31,10 @@ export const metadata: Metadata = {
     "Jamnasindo",
   ],
   applicationName: SITE_NAME,
+  category: "business",
   authors: [{ name: "PT. Jaminan Nasional Indonesia", url: SITE_URL }],
+  creator: "PT. Jaminan Nasional Indonesia",
+  publisher: "PT. Jaminan Nasional Indonesia",
   alternates: {
     canonical: "/",
   },
@@ -65,44 +72,73 @@ export const metadata: Metadata = {
   },
 };
 
+const ORG_ID = `${SITE_URL}/#organization`;
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: SITE_NAME,
-  legalName: "PT. Jaminan Nasional Indonesia",
-  alternateName: "Jamnasindo",
-  slogan: "Grow ur business with us",
-  url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
-  image: `${SITE_URL}/og.png`,
-  description: SITE_DESCRIPTION,
-  telephone: "+6281213972604",
-  email: "info@jamnas.id",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Jl. Condet Raya No. 103E",
-    addressLocality: "Kramat Jati, Jakarta Timur",
-    addressRegion: "DKI Jakarta",
-    postalCode: "13520",
-    addressCountry: "ID",
-  },
-  areaServed: "Indonesia",
-  openingHoursSpecification: [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
-      closes: "17:00",
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": ORG_ID,
+      name: SITE_NAME,
+      legalName: "PT. Jaminan Nasional Indonesia",
+      alternateName: "Jamnasindo",
+      slogan: "Grow ur business with us",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+      image: `${SITE_URL}/og.png`,
+      description: SITE_DESCRIPTION,
+      telephone: "+6281213972604",
+      email: "info@jamnas.id",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Jl. Condet Raya No. 103E",
+        addressLocality: "Kramat Jati, Jakarta Timur",
+        addressRegion: "DKI Jakarta",
+        postalCode: "13520",
+        addressCountry: "ID",
+      },
+      areaServed: { "@type": "Country", name: "Indonesia" },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+6281213972604",
+          contactType: "customer service",
+          areaServed: "ID",
+          availableLanguage: ["Indonesian"],
+        },
+      ],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "17:00",
+        },
+      ],
+      knowsAbout: [
+        "Perizinan PPIU",
+        "Perizinan PIHK",
+        "Akreditasi PPIU",
+        "IATA",
+        "Bank Garansi",
+        "Surety Bond",
+        "Laporan Keuangan Travel",
+      ],
     },
-  ],
-  knowsAbout: [
-    "Perizinan PPIU",
-    "Perizinan PIHK",
-    "Akreditasi PPIU",
-    "IATA",
-    "Bank Garansi",
-    "Surety Bond",
-    "Laporan Keuangan Travel",
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      inLanguage: "id-ID",
+      publisher: { "@id": ORG_ID },
+    },
   ],
 };
 
