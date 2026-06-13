@@ -209,8 +209,8 @@ export const contactInfo: ContactInfoItem[] = [
   {
     icon: "mail",
     label: "Email",
-    value: "info@jamnas.id",
-    href: "mailto:info@jamnas.id",
+    value: "admin@jamnas.id",
+    href: "mailto:admin@jamnas.id",
   },
   {
     icon: "clock",

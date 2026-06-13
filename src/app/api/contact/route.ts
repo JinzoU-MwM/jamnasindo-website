@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { insertContact } from "@/lib/db";
+import { sendContactEmail } from "@/lib/mailer";
 
 export async function POST(request: NextRequest) {
   try {
@@ -35,6 +36,23 @@ export async function POST(request: NextRequest) {
       services,
       message: message || "",
     });
+
+    // Kirim notifikasi email ke admin (jangan gagalkan request kalau email error —
+    // lead sudah tersimpan di database/panel admin).
+    try {
+      const result = await sendContactEmail({
+        name,
+        email,
+        phone,
+        services,
+        message: message || "",
+      });
+      if (!result.sent) {
+        console.warn("Contact email not sent:", result.reason);
+      }
+    } catch (mailErr) {
+      console.error("Contact email failed:", mailErr);
+    }
 
     return NextResponse.json(
       { message: "Pesan berhasil dikirim!", data: contact },
