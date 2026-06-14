@@ -10,6 +10,7 @@ import type {
 export const navItems: NavItem[] = [
   { label: "Beranda", href: "/" },
   { label: "Layanan", href: "/layanan" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Artikel", href: "/artikel" },
   { label: "Testimoni", href: "/testimoni" },
   { label: "Kontak", href: "/kontak" },
@@ -95,6 +96,47 @@ export const serviceCategories: ServiceCategory[] = [
           "Jaminan surety bond untuk memenuhi kewajiban finansial travel ibadah Anda.",
         tags: ["Jaminan", "Keuangan"],
         icon: "shield",
+      },
+    ],
+  },
+  {
+    id: "website",
+    title: "Pembuatan Website & Digital",
+    subtitle: "Website profesional untuk travel umrah & haji Anda",
+    icon: "globe",
+    layout: "4col",
+    services: [
+      {
+        id: "website-travel",
+        title: "Website Travel & Umrah",
+        description:
+          "Website company profile travel umrah & haji yang profesional, cepat, dan meyakinkan calon jamaah — lengkap dengan katalog paket.",
+        tags: ["Company Profile", "Katalog Paket", "Responsif"],
+        icon: "monitor",
+      },
+      {
+        id: "landing-page",
+        title: "Landing Page Promosi",
+        description:
+          "Landing page fokus konversi untuk kampanye paket umrah, promo musiman, atau iklan — dirancang untuk menghasilkan lead.",
+        tags: ["Landing Page", "Konversi", "Iklan"],
+        icon: "rocket",
+      },
+      {
+        id: "aplikasi-web",
+        title: "Aplikasi Web & Sistem",
+        description:
+          "Sistem booking, panel admin, dan CMS untuk mengelola paket, jamaah, dan inquiry secara mandiri dan real-time.",
+        tags: ["Sistem Booking", "Panel Admin", "CMS"],
+        icon: "code",
+      },
+      {
+        id: "seo-website",
+        title: "SEO & Optimasi Website",
+        description:
+          "Optimasi mesin pencari agar travel Anda mudah ditemukan calon jamaah di Google — dari sisi teknis, konten, hingga kecepatan.",
+        tags: ["SEO", "Google", "Performa"],
+        icon: "search",
       },
     ],
   },
@@ -227,5 +269,7 @@ export const serviceOptions: string[] = [
   "Laporan Keuangan",
   "Bank Garansi",
   "Surety Bond",
+  "Pembuatan Website",
+  "SEO Website",
   "Konsultasi Regulasi",
 ];

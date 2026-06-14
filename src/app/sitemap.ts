@@ -16,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${base}/portfolio`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...serviceSlugs.map((slug) => ({
       url: `${base}/layanan/${slug}`,
       lastModified,

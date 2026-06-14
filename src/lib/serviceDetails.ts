@@ -456,6 +456,259 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
     ],
   },
+
+  "website-travel": {
+    slug: "website-travel",
+    metaTitle: "Jasa Pembuatan Website Travel Umrah & Haji Profesional",
+    metaDescription:
+      "Jasa pembuatan website travel umrah & haji yang profesional, cepat, dan SEO-friendly. Tingkatkan kepercayaan calon jamaah dengan company profile online. Lihat portofolio Jamnasindo.",
+    keywords: [
+      "jasa pembuatan website travel umroh",
+      "jasa bikin website travel haji",
+      "website company profile travel",
+      "jasa website umroh",
+      "pembuatan website travel ibadah",
+    ],
+    summary:
+      "Calon jamaah kini mencari travel umrah secara online sebelum memutuskan berangkat. Website yang profesional dan cepat adalah etalase digital yang menentukan apakah mereka percaya — atau pindah ke kompetitor. Jamnasindo membangun website travel umrah & haji yang meyakinkan, mudah dikelola, dan dioptimasi agar ditemukan di Google.",
+    sections: [
+      { type: "h2", text: "Mengapa Travel Umrah Wajib Punya Website Profesional?" },
+      {
+        type: "p",
+        text: "Sebelum mendaftar, calon jamaah memeriksa kredibilitas travel lewat internet. Tanpa website yang meyakinkan, Anda kehilangan kepercayaan di tahap paling awal. Website resmi menampilkan legalitas (PPIU/PIHK), paket, harga transparan, dan bukti perjalanan — menjadikan travel Anda terlihat profesional dan tepercaya 24 jam sehari.",
+      },
+      { type: "h2", text: "Yang Anda Dapatkan" },
+      {
+        type: "ul",
+        items: [
+          "Desain modern, mobile-first, dan cepat diakses.",
+          "Katalog paket umrah & haji yang rapi beserta halaman detail dan itinerary.",
+          "Integrasi WhatsApp dan formulir lead yang langsung menangkap calon jamaah.",
+          "Galeri perjalanan dan testimoni sebagai social proof.",
+          "Struktur SEO, metadata, dan kecepatan yang ramah mesin pencari.",
+          "Opsi panel admin/CMS agar tim Anda bisa memperbarui konten sendiri.",
+        ],
+      },
+      { type: "h2", text: "Kenapa Jamnasindo?" },
+      {
+        type: "p",
+        text: "Kami bukan sekadar pembuat website — kami memahami bisnis travel ibadah dari sisi perizinan PPIU/PIHK hingga alur jamaah. Artinya website yang kami bangun tidak hanya indah, tetapi dirancang sesuai cara calon jamaah mengambil keputusan. Kunjungi halaman Portofolio kami untuk melihat langsung enam contoh website travel yang sudah jadi dan bisa Anda jelajahi.",
+      },
+      { type: "h2", text: "Alur Pengerjaan" },
+      {
+        type: "ol",
+        items: [
+          "Konsultasi kebutuhan dan brief identitas brand travel Anda.",
+          "Penyusunan struktur konten, desain, dan alur halaman.",
+          "Pengembangan website beserta integrasi WhatsApp/formulir/paket.",
+          "Revisi sesuai masukan, lalu publikasi (live) dan pelatihan pengelolaan.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "Website tercepat menarik lebih banyak jamaah. Kami membangun dengan teknologi modern (Next.js) sehingga skor kecepatan dan SEO tinggi sejak hari pertama.",
+      },
+    ],
+    faq: [
+      {
+        question: "Berapa biaya pembuatan website travel umrah?",
+        answer:
+          "Biaya menyesuaikan kebutuhan fitur — mulai dari company profile sederhana hingga sistem dengan panel admin. Hubungi kami untuk konsultasi gratis dan estimasi yang transparan tanpa biaya tersembunyi.",
+      },
+      {
+        question: "Berapa lama proses pembuatannya?",
+        answer:
+          "Website company profile umumnya selesai dalam hitungan beberapa pekan tergantung kelengkapan materi dan jumlah revisi. Timeline pasti kami sampaikan setelah brief awal.",
+      },
+      {
+        question: "Apakah saya bisa memperbarui konten sendiri?",
+        answer:
+          "Bisa. Kami menyediakan opsi panel admin/CMS sehingga tim Anda dapat menambah paket, promo, artikel, dan menerima inquiry secara mandiri tanpa perlu teknis.",
+      },
+      {
+        question: "Apakah sudah termasuk domain dan hosting?",
+        answer:
+          "Kami membantu pengadaan dan konfigurasi domain serta hosting, termasuk subdomain demo, sertifikat SSL (HTTPS), dan pengaturan agar website cepat dan aman.",
+      },
+    ],
+  },
+
+  "landing-page": {
+    slug: "landing-page",
+    metaTitle: "Jasa Pembuatan Landing Page Promosi Umrah (Fokus Konversi)",
+    metaDescription:
+      "Jasa pembuatan landing page promosi paket umrah & haji yang fokus konversi untuk iklan dan campaign. Desain cepat, persuasif, dan siap menangkap lead. Jamnasindo.",
+    keywords: [
+      "jasa landing page umroh",
+      "landing page promosi travel",
+      "landing page iklan umroh",
+      "jasa landing page travel haji",
+    ],
+    summary:
+      "Saat menjalankan iklan paket umrah, mengarahkan trafik ke beranda biasa akan membuang anggaran. Landing page yang fokus pada satu tujuan — mendaftar atau menghubungi — meningkatkan konversi secara signifikan. Jamnasindo membuat landing page persuasif yang dirancang untuk menangkap lead.",
+    sections: [
+      { type: "h2", text: "Kapan Anda Butuh Landing Page?" },
+      {
+        type: "p",
+        text: "Landing page ideal untuk kampanye spesifik: promo umrah awal tahun, paket Ramadhan, early bird, atau iklan Meta/Google Ads. Berbeda dengan website penuh, landing page menghapus distraksi dan mengarahkan pengunjung pada satu aksi sehingga rasio konversi jauh lebih tinggi.",
+      },
+      { type: "h2", text: "Elemen Landing Page yang Mengonversi" },
+      {
+        type: "ul",
+        items: [
+          "Headline dan penawaran yang jelas di atas lipatan (above the fold).",
+          "Bukti sosial: testimoni, jumlah jamaah, dan legalitas.",
+          "Rincian paket dan harga yang transparan.",
+          "Tombol aksi (CTA) WhatsApp dan formulir yang menonjol di banyak titik.",
+          "Kecepatan tinggi agar pengunjung dari iklan tidak kabur.",
+        ],
+      },
+      { type: "h2", text: "Pendekatan Jamnasindo" },
+      {
+        type: "p",
+        text: "Kami merancang landing page berdasarkan psikologi keputusan calon jamaah dan menyiapkannya untuk pelacakan konversi (pixel/analytics) agar performa iklan Anda terukur. Lihat contoh gaya desainnya pada portofolio kami.",
+      },
+      {
+        type: "tip",
+        text: "Satu landing page = satu tujuan. Jangan campur banyak penawaran dalam satu halaman iklan — fokus selalu menang dalam hal konversi.",
+      },
+    ],
+    faq: [
+      {
+        question: "Apa beda landing page dengan website biasa?",
+        answer:
+          "Website menampilkan keseluruhan profil travel, sedangkan landing page fokus pada satu kampanye dan satu aksi (mendaftar/menghubungi) sehingga konversinya lebih tinggi untuk keperluan iklan.",
+      },
+      {
+        question: "Apakah cocok untuk iklan Facebook/Instagram dan Google Ads?",
+        answer:
+          "Sangat cocok. Kami menyiapkan landing page yang cepat dan dapat dipasang pixel/analytics agar hasil iklan Anda dapat diukur dan dioptimalkan.",
+      },
+      {
+        question: "Berapa lama pembuatan landing page?",
+        answer:
+          "Landing page umumnya lebih cepat dibanding website penuh dan bisa selesai dalam hitungan hari hingga sepekan tergantung materi dan revisi.",
+      },
+    ],
+  },
+
+  "aplikasi-web": {
+    slug: "aplikasi-web",
+    metaTitle: "Jasa Pembuatan Sistem Booking, Panel Admin & Aplikasi Web Travel",
+    metaDescription:
+      "Jasa pembuatan aplikasi web, sistem booking paket umrah, panel admin, dan CMS untuk travel ibadah. Kelola paket, jamaah, dan inquiry secara mandiri. Jamnasindo.",
+    keywords: [
+      "jasa pembuatan sistem booking umroh",
+      "aplikasi web travel",
+      "panel admin travel umroh",
+      "CMS travel ibadah",
+    ],
+    summary:
+      "Ketika travel Anda bertumbuh, mengelola paket, jamaah, dan inquiry secara manual menjadi tidak efisien. Jamnasindo membangun aplikasi web, sistem booking, dan panel admin yang membuat operasional travel lebih cepat, rapi, dan terukur.",
+    sections: [
+      { type: "h2", text: "Dari Website Menjadi Sistem" },
+      {
+        type: "p",
+        text: "Company profile menarik calon jamaah; sistem membuat Anda mengelolanya dengan efisien. Dengan panel admin, tim Anda dapat menambah/mengubah paket, mempublikasikan promo, dan menindaklanjuti inquiry secara real-time tanpa bergantung pada developer.",
+      },
+      { type: "h2", text: "Yang Bisa Kami Bangun" },
+      {
+        type: "ul",
+        items: [
+          "Panel admin untuk kelola paket, artikel, promo, dan FAQ.",
+          "Inbox lead/inquiry yang tersimpan rapi di database.",
+          "Sistem booking dan pendaftaran jamaah online.",
+          "Manajemen status keberangkatan dan dokumen jamaah.",
+          "Integrasi WhatsApp, pembayaran, dan notifikasi sesuai kebutuhan.",
+        ],
+      },
+      { type: "h2", text: "Contoh Nyata" },
+      {
+        type: "p",
+        text: "Pada portofolio kami, website Labbaik Mabrur adalah contoh full-stack: situs publik untuk calon jamaah sekaligus panel admin untuk mengelola paket, promo, dan inbox lead. Sistem serupa dapat kami sesuaikan untuk travel Anda.",
+      },
+      {
+        type: "tip",
+        text: "Mulai dari yang esensial, lalu kembangkan bertahap. Kami merancang sistem yang modular sehingga fitur dapat ditambah seiring pertumbuhan travel Anda.",
+      },
+    ],
+    faq: [
+      {
+        question: "Apakah saya bisa mengelola paket dan jamaah sendiri?",
+        answer:
+          "Ya. Kami menyediakan panel admin yang mudah digunakan sehingga tim Anda dapat mengelola paket, promo, artikel, dan inquiry secara mandiri dan real-time.",
+      },
+      {
+        question: "Apakah bisa terintegrasi dengan pembayaran dan WhatsApp?",
+        answer:
+          "Bisa. Kami dapat mengintegrasikan WhatsApp, gerbang pembayaran, dan notifikasi sesuai kebutuhan operasional travel Anda.",
+      },
+      {
+        question: "Apakah datanya aman?",
+        answer:
+          "Data tersimpan di database dengan akses yang terlindungi autentikasi. Kami menerapkan praktik keamanan standar dan HTTPS pada seluruh sistem.",
+      },
+    ],
+  },
+
+  "seo-website": {
+    slug: "seo-website",
+    metaTitle: "Jasa SEO & Optimasi Website Travel Umrah agar Tampil di Google",
+    metaDescription:
+      "Jasa SEO dan optimasi website travel umrah & haji agar mudah ditemukan calon jamaah di Google. Optimasi teknis, konten, dan kecepatan oleh Jamnasindo.",
+    keywords: [
+      "jasa SEO travel umroh",
+      "optimasi website umroh",
+      "SEO website travel",
+      "jasa SEO travel haji",
+    ],
+    summary:
+      "Website yang bagus tidak berarti banyak jika tidak ditemukan. SEO (Search Engine Optimization) membuat travel Anda muncul saat calon jamaah mencari 'travel umrah terpercaya' di Google. Jamnasindo mengoptimasi sisi teknis, konten, dan kecepatan website Anda.",
+    sections: [
+      { type: "h2", text: "Mengapa SEO Penting untuk Travel Umrah?" },
+      {
+        type: "p",
+        text: "Mayoritas calon jamaah memulai pencarian dari Google. Tampil di halaman pertama berarti aliran lead organik yang berkelanjutan tanpa terus membayar iklan. SEO adalah investasi jangka panjang yang menurunkan biaya akuisisi jamaah dari waktu ke waktu.",
+      },
+      { type: "h2", text: "Yang Kami Optimasi" },
+      {
+        type: "ul",
+        items: [
+          "SEO teknis: struktur, metadata, sitemap, data terstruktur (schema), dan indexability.",
+          "Kecepatan dan Core Web Vitals agar ramah peringkat dan pengguna.",
+          "Riset kata kunci dan optimasi konten halaman layanan & artikel.",
+          "Internal linking dan struktur informasi yang sehat.",
+          "Optimasi mobile dan pengalaman pengguna.",
+        ],
+      },
+      { type: "h2", text: "Dibangun SEO-Ready Sejak Awal" },
+      {
+        type: "p",
+        text: "Setiap website yang kami buat sudah menerapkan fondasi SEO sejak awal — metadata rapi, sitemap, schema, dan kecepatan tinggi. Untuk website yang sudah ada, kami melakukan audit dan optimasi menyeluruh.",
+      },
+      {
+        type: "tip",
+        text: "SEO adalah maraton, bukan sprint. Konsistensi konten dan kesehatan teknis yang terjaga akan memberi hasil yang menumpuk seiring waktu.",
+      },
+    ],
+    faq: [
+      {
+        question: "Berapa lama SEO menunjukkan hasil?",
+        answer:
+          "SEO bersifat jangka menengah-panjang. Perbaikan teknis dapat berdampak relatif cepat, sedangkan peringkat kata kunci kompetitif umumnya bertumbuh dalam beberapa bulan dengan konsistensi.",
+      },
+      {
+        question: "Apakah website lama saya bisa dioptimasi?",
+        answer:
+          "Bisa. Kami melakukan audit SEO menyeluruh pada website yang sudah ada lalu memperbaiki sisi teknis, konten, dan kecepatannya.",
+      },
+      {
+        question: "Apakah hasil SEO bisa dipantau?",
+        answer:
+          "Ya. Kami menyiapkan pelacakan melalui Google Search Console dan analytics sehingga performa pencarian dan trafik Anda terukur dan transparan.",
+      },
+    ],
+  },
 };
 
 export function getServiceDetail(slug: string): ServiceDetail | undefined {
