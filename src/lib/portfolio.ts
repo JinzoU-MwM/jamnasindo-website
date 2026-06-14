@@ -10,7 +10,8 @@ export interface PortfolioItem {
   segment: string;
   description: string;
   tags: string[];
-  accent: string; // kelas gradient Tailwind untuk mockup
+  image: string; // screenshot di /public
+  accent: string; // kelas gradient Tailwind (fallback saat gambar memuat)
 }
 
 export const portfolioItems: PortfolioItem[] = [
@@ -22,6 +23,7 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Website travel umrah & haji lengkap: katalog paket dinamis, artikel, formulir lead tersimpan ke database, plus panel admin untuk kelola paket, promo, FAQ, dan inbox.",
     tags: ["Company Profile", "Paket Dinamis", "Panel Admin", "Database"],
+    image: "/img/portfolio/dummy4.jpg",
     accent: "from-emerald-500/30 to-teal-700/10",
   },
   {
@@ -32,6 +34,7 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Landing page premium untuk segmen eksklusif — hotel bintang 5, kuota terbatas, dengan nuansa elegan emas-gelap dan animasi halus.",
     tags: ["Landing Page", "Premium", "Lead WhatsApp"],
+    image: "/img/portfolio/dummy5.jpg",
     accent: "from-amber-400/30 to-yellow-700/10",
   },
   {
@@ -42,6 +45,7 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Landing page ramah dan modern dengan kalkulator simulasi tabungan umrah interaktif — dirancang untuk konversi keluarga muda.",
     tags: ["Landing Page", "Kalkulator", "Mobile-first"],
+    image: "/img/portfolio/dummy6.jpg",
     accent: "from-teal-400/30 to-cyan-700/10",
   },
   {
@@ -52,6 +56,7 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Company profile travel umrah dengan katalog paket, promo, galeri, dan FAQ yang tertata rapi serta dioptimasi untuk pencarian.",
     tags: ["Company Profile", "Katalog Paket", "SEO"],
+    image: "/img/portfolio/dummy3.jpg",
     accent: "from-sky-500/30 to-blue-700/10",
   },
   {
@@ -62,6 +67,7 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Storefront travel umrah dengan manajemen paket, galeri perjalanan, dan formulir kontak yang terhubung ke database admin.",
     tags: ["Company Profile", "CMS", "Lead Form"],
+    image: "/img/portfolio/dummy2.jpg",
     accent: "from-violet-500/30 to-purple-700/10",
   },
   {
@@ -72,6 +78,7 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Website travel umrah responsif dengan tampilan bersih — paket, testimoni, dan tombol kontak cepat untuk memaksimalkan inquiry.",
     tags: ["Company Profile", "Responsif", "Testimoni"],
+    image: "/img/portfolio/dummy1.jpg",
     accent: "from-rose-500/30 to-pink-700/10",
   },
 ];

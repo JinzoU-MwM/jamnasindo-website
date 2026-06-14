@@ -43,16 +43,16 @@ export function PortfolioSection({
                     </span>
                   </div>
                   <div
-                    className={`relative flex aspect-[16/10] items-center justify-center bg-gradient-to-br ${item.accent}`}
+                    className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${item.accent}`}
                   >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.06)_1px,transparent_0)] [background-size:18px_18px]" />
-                    <div className="relative text-center">
-                      <p className="font-heading text-2xl font-bold text-white">
-                        {item.name}
-                      </p>
-                      <p className="mt-1 text-xs text-white/60">{item.segment}</p>
-                    </div>
-                    <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-medium text-lime-300 opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={item.image}
+                      alt={`Tampilan website ${item.name} — ${item.segment}`}
+                      loading="lazy"
+                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                    <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-black/50 px-2.5 py-1 text-[10px] font-medium text-lime-300 opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
                       <Icon name="external-link" size={11} /> Live Demo
                     </span>
                   </div>
