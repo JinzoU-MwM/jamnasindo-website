@@ -201,18 +201,28 @@ export default function ArtikelDetailPage({
           <ObservedDiv>
             <div className="mt-16 rounded-2xl border border-neutral-800 bg-neutral-950 p-8 text-center">
               <h2 className="font-heading font-bold text-2xl text-white mb-3">
-                Butuh Bantuan Mengurus Perizinan?
+                {article.cta?.title ?? "Butuh Bantuan Mengurus Perizinan?"}
               </h2>
               <p className="text-neutral-400 mb-6">
-                Tim Jamnasindo siap mendampingi proses perizinan dan
-                administrasi travel umroh & haji Anda dari awal sampai terbit.
+                {article.cta?.text ??
+                  "Tim Jamnasindo siap mendampingi proses perizinan dan administrasi travel umroh & haji Anda dari awal sampai terbit."}
               </p>
-              <Link
-                href="/kontak"
-                className="inline-block rounded-full bg-lime-400 px-8 py-3 font-medium text-black transition-colors hover:bg-lime-300"
-              >
-                Konsultasi Gratis
-              </Link>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Link
+                  href={article.cta?.primaryHref ?? "/kontak"}
+                  className="inline-block rounded-full bg-lime-400 px-8 py-3 font-medium text-black transition-colors hover:bg-lime-300"
+                >
+                  {article.cta?.primaryLabel ?? "Konsultasi Gratis"}
+                </Link>
+                {article.cta?.secondaryHref && (
+                  <Link
+                    href={article.cta.secondaryHref}
+                    className="inline-block rounded-full border border-neutral-700 px-8 py-3 font-medium text-white transition-colors hover:border-lime-400/50"
+                  >
+                    {article.cta.secondaryLabel}
+                  </Link>
+                )}
+              </div>
             </div>
           </ObservedDiv>
 

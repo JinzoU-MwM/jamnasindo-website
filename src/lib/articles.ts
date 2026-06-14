@@ -19,9 +19,116 @@ export interface Article {
   readingMinutes: number;
   keywords: string[];
   sections: ArticleSection[];
+  cta?: {
+    title: string;
+    text: string;
+    primaryHref: string;
+    primaryLabel: string;
+    secondaryHref?: string;
+    secondaryLabel?: string;
+  };
 }
 
 export const articles: Article[] = [
+  {
+    slug: "digital-marketing-travel-umroh-website",
+    title:
+      "Digital Marketing Travel Umroh: Mengapa Website adalah Fondasi untuk Mendapatkan Jamaah",
+    description:
+      "Panduan digital marketing untuk travel umroh & haji. Pelajari mengapa website profesional menjadi fondasi semua channel pemasaran online — SEO, iklan, media sosial, hingga WhatsApp — untuk mendatangkan jamaah secara konsisten.",
+    category: "Digital Marketing",
+    date: "2026-06-14",
+    readingMinutes: 8,
+    keywords: [
+      "digital marketing travel umroh",
+      "cara promosi travel umroh online",
+      "website travel umroh",
+      "strategi marketing travel umrah",
+      "mendapatkan jamaah umroh dari internet",
+      "jasa pembuatan website travel umroh",
+    ],
+    sections: [
+      {
+        type: "p",
+        text: "Persaingan bisnis travel umroh kini tidak lagi terjadi di brosur atau spanduk, melainkan di layar ponsel calon jamaah. Sebelum memutuskan berangkat bersama travel tertentu, mayoritas calon jamaah menelusuri reputasi, paket, dan harga secara online. Artinya, travel yang tidak hadir secara profesional di internet praktis tidak masuk daftar pertimbangan. Di sinilah digital marketing berperan — dan fondasinya adalah sebuah website yang kredibel.",
+      },
+      { type: "h2", text: "Perilaku Calon Jamaah Sudah Bergeser ke Digital" },
+      {
+        type: "p",
+        text: "Calon jamaah hari ini melakukan riset mandiri: mencari 'travel umroh terpercaya' di Google, membandingkan paket di Instagram, membaca ulasan, lalu menghubungi via WhatsApp. Seluruh perjalanan keputusan ini terjadi secara online. Tanpa kehadiran digital yang meyakinkan, Anda kehilangan calon jamaah jauh sebelum sempat berbicara dengan mereka.",
+      },
+      { type: "h2", text: "Website: Fondasi dari Seluruh Strategi Digital Marketing" },
+      {
+        type: "p",
+        text: "Banyak travel mengira digital marketing cukup dengan rajin posting di media sosial. Padahal media sosial, iklan, dan WhatsApp hanyalah saluran untuk menarik perhatian — semuanya pada akhirnya perlu mengarahkan calon jamaah ke satu tempat yang meyakinkan dan siap mengonversi: website Anda. Tanpa website yang kredibel dan cepat, anggaran iklan dan kerja keras konten akan bocor sia-sia.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Membangun kepercayaan: menampilkan legalitas (PPIU/PIHK), izin Kemenag, dan bukti perjalanan secara profesional.",
+          "Etalase 24 jam: calon jamaah dapat melihat paket, harga, dan itinerary kapan saja tanpa menunggu balasan admin.",
+          "Menangkap lead: formulir dan tombol WhatsApp mengubah pengunjung menjadi kontak yang bisa ditindaklanjuti.",
+          "Fondasi SEO: hanya website yang dapat muncul di hasil pencarian Google secara organik.",
+          "Tujuan iklan: setiap iklan berbayar membutuhkan halaman tujuan (landing page) yang fokus konversi.",
+          "Aset milik sendiri: berbeda dengan akun media sosial yang bisa diblokir atau berubah algoritma, website adalah aset digital yang Anda kendalikan penuh.",
+        ],
+      },
+      { type: "h2", text: "5 Channel Digital Marketing yang Bertumpu pada Website" },
+      { type: "h3", text: "1. SEO — Ditemukan Saat Calon Jamaah Mencari" },
+      {
+        type: "p",
+        text: "SEO (Search Engine Optimization) membuat website Anda muncul ketika seseorang mengetik 'travel umroh' di kota Anda pada Google. Ini sumber jamaah organik yang berkelanjutan tanpa terus membayar iklan. Namun SEO hanya berjalan jika Anda memiliki website yang sehat secara teknis, cepat, dan berisi konten relevan.",
+      },
+      { type: "h3", text: "2. Iklan Berbayar (Google Ads & Meta Ads)" },
+      {
+        type: "p",
+        text: "Iklan dapat mendatangkan trafik dengan cepat, tetapi efektivitasnya ditentukan oleh halaman tujuannya. Mengarahkan iklan ke beranda biasa akan memboroskan anggaran; landing page yang fokus pada satu penawaran dan satu aksi (mendaftar atau menghubungi) menghasilkan konversi jauh lebih tinggi.",
+      },
+      { type: "h3", text: "3. Media Sosial (Instagram, TikTok, Facebook)" },
+      {
+        type: "p",
+        text: "Media sosial efektif membangun kesadaran dan kedekatan. Namun jadikan ia 'pintu masuk', bukan tujuan akhir. Selalu arahkan audiens ke website untuk informasi lengkap dan proses pendaftaran yang serius — di sanalah keputusan diambil.",
+      },
+      { type: "h3", text: "4. WhatsApp & Tindak Lanjut Lead" },
+      {
+        type: "p",
+        text: "WhatsApp adalah saluran konversi utama di Indonesia. Website yang baik menempatkan tombol WhatsApp di titik strategis dan menyimpan setiap inquiry, sehingga tim Anda dapat menindaklanjuti calon jamaah secara terstruktur, bukan kehilangan jejak percakapan.",
+      },
+      { type: "h3", text: "5. Konten & Artikel (Content Marketing)" },
+      {
+        type: "p",
+        text: "Artikel bermanfaat — seperti panduan persiapan umroh atau tips memilih travel — menarik calon jamaah dari pencarian, membangun otoritas, dan memperkuat SEO. Konten yang konsisten menjadikan website Anda rujukan, bukan sekadar etalase.",
+      },
+      {
+        type: "tip",
+        text: "Sebelum menggelontorkan anggaran iklan, pastikan fondasinya kuat. Iklan yang mengarah ke website lambat atau tidak meyakinkan sama saja menuang air ke ember bocor. Bangun website yang solid terlebih dahulu.",
+      },
+      { type: "h2", text: "Kesalahan Umum Travel dalam Digital Marketing" },
+      {
+        type: "ul",
+        items: [
+          "Hanya mengandalkan media sosial tanpa website resmi — kehilangan kredibilitas dan trafik pencarian.",
+          "Website lambat dan tidak ramah ponsel, padahal mayoritas calon jamaah mengakses dari HP.",
+          "Tidak ada ajakan bertindak (CTA) atau formulir yang jelas, sehingga pengunjung pergi tanpa meninggalkan kontak.",
+          "Menjalankan iklan tanpa landing page khusus dan tanpa pelacakan konversi.",
+          "Konten tidak konsisten sehingga peringkat SEO tidak pernah bertumbuh.",
+        ],
+      },
+      { type: "h2", text: "Mulai dari Fondasi yang Benar bersama Jamnasindo" },
+      {
+        type: "p",
+        text: "Jamnasindo memahami bisnis travel umroh & haji secara menyeluruh — dari perizinan PPIU/PIHK hingga pemasaran digital. Kami membangun website travel yang cepat, SEO-ready sejak awal, dan dirancang untuk mengubah pengunjung menjadi jamaah. Anda tidak perlu menebak: lihat langsung enam contoh website travel yang sudah kami buat di halaman Portofolio kami, lalu konsultasikan kebutuhan Anda secara gratis. Fondasi digital marketing Anda dimulai dari sini.",
+      },
+    ],
+    cta: {
+      title: "Siap Punya Website yang Mendatangkan Jamaah?",
+      text: "Jamnasindo membangun website travel umroh & haji yang cepat, SEO-ready, dan dirancang untuk konversi — fondasi seluruh strategi digital marketing Anda. Lihat portofolio kami atau konsultasi gratis sekarang.",
+      primaryHref: "/kontak",
+      primaryLabel: "Konsultasi Gratis",
+      secondaryHref: "/portfolio",
+      secondaryLabel: "Lihat Portofolio",
+    },
+  },
   {
     slug: "syarat-izin-ppiu",
     title: "Syarat dan Cara Mengurus Izin PPIU: Panduan Lengkap untuk Travel Umroh",
