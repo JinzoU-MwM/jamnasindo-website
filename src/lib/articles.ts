@@ -31,6 +31,90 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "seo-travel-umroh-tampil-halaman-1-google",
+    title:
+      "SEO untuk Travel Umroh: Cara Website Anda Tampil di Halaman 1 Google",
+    description:
+      "Panduan SEO untuk travel umroh & haji: pahami 3 pilar SEO, langkah praktis, dan kesalahan umum agar website travel Anda muncul di halaman pertama Google dan mendatangkan jamaah secara organik.",
+    category: "Digital Marketing",
+    date: "2026-06-14",
+    readingMinutes: 7,
+    keywords: [
+      "SEO travel umroh",
+      "cara website travel umroh muncul di google",
+      "jasa SEO travel umroh",
+      "optimasi website umroh",
+      "SEO untuk travel umrah",
+    ],
+    sections: [
+      {
+        type: "p",
+        text: "Memiliki website yang bagus tetapi tidak muncul di Google sama saja seperti membuka toko mewah di gang buntu — tidak ada yang menemukannya. SEO (Search Engine Optimization) adalah cara agar website travel Anda muncul ketika calon jamaah mencari di Google, sehingga mendatangkan jamaah secara organik tanpa terus membayar iklan. Artikel ini merangkum dasar SEO yang perlu dipahami setiap pemilik travel umroh.",
+      },
+      { type: "h2", text: "Mengapa SEO Penting untuk Travel Umroh?" },
+      {
+        type: "p",
+        text: "Mayoritas calon jamaah memulai pencarian dari Google: 'travel umroh terpercaya', 'paket umroh [nama kota]', atau 'biaya umroh 2026'. Travel yang tampil di halaman pertama mendapatkan aliran calon jamaah yang berkelanjutan. Berbeda dengan iklan yang berhenti begitu anggaran habis, peringkat organik terus bekerja 24 jam dan menurunkan biaya akuisisi jamaah dari waktu ke waktu.",
+      },
+      { type: "h2", text: "3 Pilar SEO yang Wajib Dipahami" },
+      { type: "h3", text: "1. SEO Teknis" },
+      {
+        type: "p",
+        text: "Fondasi agar Google dapat menjelajah dan memahami website Anda: kecepatan tinggi, tampilan ramah ponsel, struktur URL yang rapi, sitemap, data terstruktur (schema), HTTPS, dan halaman yang dapat diindeks. Tanpa fondasi teknis yang sehat, upaya SEO lain sulit membuahkan hasil.",
+      },
+      { type: "h3", text: "2. SEO Konten (On-page)" },
+      {
+        type: "p",
+        text: "Google mengutamakan konten yang relevan dan bermanfaat. Ini mencakup riset kata kunci, judul dan meta description yang tepat, penggunaan heading yang terstruktur, serta konten halaman paket dan artikel yang menjawab pertanyaan calon jamaah secara mendalam.",
+      },
+      { type: "h3", text: "3. Otoritas & Reputasi" },
+      {
+        type: "p",
+        text: "Semakin dipercaya website Anda, semakin tinggi peringkatnya. Otoritas dibangun melalui konsistensi konten berkualitas, ulasan positif, profil bisnis yang lengkap, dan tautan dari situs lain yang relevan.",
+      },
+      { type: "h2", text: "Langkah Praktis SEO untuk Travel Umroh" },
+      {
+        type: "ol",
+        items: [
+          "Riset kata kunci, terutama kata kunci lokal seperti 'travel umroh [kota Anda]'.",
+          "Optimalkan halaman paket dan layanan dengan judul, deskripsi, dan konten yang jelas.",
+          "Tulis artikel bermanfaat secara rutin (panduan, tips, biaya) untuk menjangkau lebih banyak pencarian.",
+          "Daftarkan dan lengkapi Google Business Profile agar muncul di pencarian lokal dan Maps.",
+          "Pasang Google Search Console untuk memantau performa dan masalah indeks.",
+          "Pastikan website cepat dan nyaman diakses dari ponsel.",
+        ],
+      },
+      {
+        type: "tip",
+        text: "SEO adalah maraton, bukan sprint. Perbaikan teknis bisa berdampak relatif cepat, tetapi peringkat kata kunci kompetitif tumbuh dalam hitungan bulan. Konsistensi adalah kunci yang membedakan travel yang menang di pencarian.",
+      },
+      { type: "h2", text: "Kesalahan SEO yang Sering Terjadi" },
+      {
+        type: "ul",
+        items: [
+          "Website lambat dan tidak ramah ponsel, padahal mayoritas pencarian dari HP.",
+          "Konten tipis atau menyalin dari travel lain — Google menilai rendah konten duplikat.",
+          "Mengabaikan kata kunci lokal padahal calon jamaah sering mencari berdasarkan kota.",
+          "Tidak konsisten membuat konten sehingga peringkat tidak pernah bertumbuh.",
+          "Tidak memantau hasil melalui Google Search Console.",
+        ],
+      },
+      { type: "h2", text: "Bangun Fondasi SEO Sejak Awal bersama Jamnasindo" },
+      {
+        type: "p",
+        text: "Setiap website yang dibangun Jamnasindo sudah menerapkan fondasi SEO sejak awal — metadata rapi, sitemap, data terstruktur, dan kecepatan tinggi. Untuk website yang sudah ada, kami melakukan audit dan optimasi menyeluruh. Lihat enam contoh website travel yang kami bangun di halaman Portofolio, lalu konsultasikan strategi SEO travel Anda secara gratis.",
+      },
+    ],
+    cta: {
+      title: "Ingin Website Travel Anda Tampil di Google?",
+      text: "Jamnasindo membangun website yang SEO-ready sejak awal dan menyediakan jasa optimasi untuk website yang sudah ada. Konsultasi gratis untuk menyusun strategi SEO travel Anda.",
+      primaryHref: "/kontak",
+      primaryLabel: "Konsultasi Gratis",
+      secondaryHref: "/layanan/seo-website",
+      secondaryLabel: "Lihat Jasa SEO Website",
+    },
+  },
+  {
     slug: "landing-page-vs-website-travel-umroh",
     title:
       "Landing Page vs Website: Mana yang Tepat untuk Travel Umroh Anda?",
