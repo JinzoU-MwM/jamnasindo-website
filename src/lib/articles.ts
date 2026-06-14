@@ -31,6 +31,84 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "biaya-pembuatan-website-travel-umroh",
+    title:
+      "Berapa Biaya Pembuatan Website Travel Umroh? Ini Faktor Penentunya",
+    description:
+      "Berapa biaya pembuatan website travel umroh & haji? Pahami faktor yang menentukan harga, perbedaan tiap jenis website, dan cara mendapatkan penawaran transparan sesuai kebutuhan dan anggaran Anda.",
+    category: "Digital Marketing",
+    date: "2026-06-14",
+    readingMinutes: 6,
+    keywords: [
+      "biaya pembuatan website travel umroh",
+      "harga jasa pembuatan website",
+      "biaya bikin website travel",
+      "jasa pembuatan website travel umroh",
+      "harga website company profile",
+    ],
+    sections: [
+      {
+        type: "p",
+        text: "Pertanyaan pertama yang muncul saat ingin membuat website biasanya: berapa biayanya? Jawaban jujurnya — tergantung. Sama seperti membangun rumah, biaya website ditentukan oleh ukuran, fitur, dan kualitasnya. Artikel ini membantu Anda memahami apa saja yang memengaruhi harga agar dapat menganggarkan dengan tepat dan tidak salah pilih.",
+      },
+      { type: "h2", text: "Mengapa Tidak Ada Harga Tunggal?" },
+      {
+        type: "p",
+        text: "Website satu halaman sederhana dan sistem lengkap dengan panel admin adalah dua hal yang sangat berbeda dari sisi pengerjaan. Karena itu, harga yang wajar selalu mengikuti kebutuhan. Waspadai penawaran 'harga pasti murah' tanpa memahami kebutuhan Anda — sering kali hasilnya tidak sepadan dengan tujuan bisnis.",
+      },
+      { type: "h2", text: "Faktor yang Menentukan Biaya Website" },
+      {
+        type: "ul",
+        items: [
+          "Jenis website: landing page satu halaman jauh lebih terjangkau dibanding website multi-halaman atau sistem dengan panel admin.",
+          "Kompleksitas fitur: katalog paket dinamis, formulir lead, panel admin, sistem booking, dan integrasi pembayaran menambah biaya.",
+          "Desain: template standar vs desain khusus (custom) yang disesuaikan dengan identitas brand travel Anda.",
+          "Kesiapan konten: apakah materi teks, foto, dan data paket sudah siap atau perlu disiapkan terlebih dahulu.",
+          "Kebutuhan SEO & kecepatan: optimasi teknis dan performa yang baik adalah investasi yang sepadan.",
+          "Domain, hosting, dan pemeliharaan: biaya berjalan yang perlu diperhitungkan selain biaya pembuatan awal.",
+        ],
+      },
+      { type: "h2", text: "Tiga Tingkatan Umum Website Travel" },
+      { type: "h3", text: "1. Landing Page" },
+      {
+        type: "p",
+        text: "Satu halaman yang fokus pada konversi, ideal untuk iklan dan promo musiman. Ini opsi paling terjangkau dan paling cepat dikerjakan.",
+      },
+      { type: "h3", text: "2. Website Company Profile" },
+      {
+        type: "p",
+        text: "Website multi-halaman (beranda, paket, tentang, artikel, kontak) — pilihan paling umum untuk travel umroh karena membangun kredibilitas sekaligus menjadi fondasi SEO. Investasi pada tingkat menengah.",
+      },
+      { type: "h3", text: "3. Website + Sistem (Full-stack)" },
+      {
+        type: "p",
+        text: "Dilengkapi panel admin, sistem booking, dan database agar travel dapat mengelola paket, jamaah, dan inquiry secara mandiri. Investasi tertinggi, namun paling bertenaga untuk travel yang sedang bertumbuh.",
+      },
+      {
+        type: "tip",
+        text: "Jangan memilih hanya berdasarkan harga termurah. Website yang lambat atau tidak meyakinkan justru memboroskan anggaran iklan dan kehilangan jamaah. Ukuran sebenarnya bukan 'berapa biaya pembuatannya', melainkan 'berapa banyak jamaah yang dihasilkannya'.",
+      },
+      { type: "h2", text: "Website Itu Investasi, Bukan Sekadar Biaya" },
+      {
+        type: "p",
+        text: "Coba hitung: jika website mendatangkan satu atau dua jamaah tambahan setiap bulan, dalam waktu singkat biaya pembuatannya sudah tertutup — dan setelah itu ia terus bekerja untuk Anda. Karena itu, pandang website sebagai aset yang menghasilkan, bukan pengeluaran sekali pakai.",
+      },
+      { type: "h2", text: "Dapatkan Penawaran Transparan dari Jamnasindo" },
+      {
+        type: "p",
+        text: "Jamnasindo memberikan rincian biaya yang jelas tanpa biaya tersembunyi, disesuaikan dengan kebutuhan dan anggaran Anda. Lihat dulu enam contoh website travel yang kami bangun di halaman Portofolio sebagai standar kualitas, lalu konsultasikan kebutuhan Anda untuk mendapatkan estimasi yang sesuai.",
+      },
+    ],
+    cta: {
+      title: "Mau Tahu Estimasi untuk Travel Anda?",
+      text: "Setiap travel berbeda kebutuhannya. Konsultasikan kebutuhan Anda dan dapatkan penawaran yang transparan serta sesuai anggaran — tanpa biaya tersembunyi.",
+      primaryHref: "/kontak",
+      primaryLabel: "Minta Penawaran",
+      secondaryHref: "/layanan/website-travel",
+      secondaryLabel: "Lihat Jasa Pembuatan Website",
+    },
+  },
+  {
     slug: "seo-travel-umroh-tampil-halaman-1-google",
     title:
       "SEO untuk Travel Umroh: Cara Website Anda Tampil di Halaman 1 Google",
