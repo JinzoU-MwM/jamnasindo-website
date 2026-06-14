@@ -15,6 +15,9 @@ const fontBold = readFileSync(
   join(process.cwd(), "public/fonts/Inter-Bold.ttf"),
 );
 
+const logoMark = readFileSync(join(process.cwd(), "public/logo-mark.png"));
+const logoDataUri = `data:image/png;base64,${logoMark.toString("base64")}`;
+
 export default function Image({ params }: { params: { slug: string } }) {
   const article = getArticle(params.slug);
   const title = article?.title ?? "Artikel — Jamnasindo";
@@ -46,19 +49,23 @@ export default function Image({ params }: { params: { slug: string } }) {
             <div
               style={{
                 display: "flex",
-                width: "52px",
-                height: "52px",
+                width: "60px",
+                height: "60px",
                 borderRadius: "14px",
-                backgroundColor: "#a3e635",
+                backgroundColor: "#ffffff",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "#0a0f0a",
-                fontSize: "32px",
-                fontWeight: 700,
                 marginRight: "18px",
               }}
             >
-              J
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={logoDataUri}
+                alt="Jamnasindo"
+                width={32}
+                height={46}
+                style={{ objectFit: "contain" }}
+              />
             </div>
             <div
               style={{
