@@ -31,6 +31,92 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "landing-page-vs-website-travel-umroh",
+    title:
+      "Landing Page vs Website: Mana yang Tepat untuk Travel Umroh Anda?",
+    description:
+      "Bingung memilih landing page atau website untuk travel umroh? Pelajari perbedaan, kelebihan, dan kapan sebaiknya menggunakan masing-masing agar pemasaran digital travel Anda efektif dan tidak boros anggaran.",
+    category: "Digital Marketing",
+    date: "2026-06-14",
+    readingMinutes: 6,
+    keywords: [
+      "landing page vs website",
+      "perbedaan landing page dan website",
+      "landing page travel umroh",
+      "website travel umroh",
+      "jasa landing page umroh",
+      "jasa pembuatan website travel umroh",
+    ],
+    sections: [
+      {
+        type: "p",
+        text: "Banyak pemilik travel umroh bingung: cukup membuat landing page, atau perlu website penuh? Keduanya sering dianggap sama, padahal fungsinya berbeda. Salah memilih bisa berarti anggaran terbuang atau peluang jamaah hilang. Artikel ini menjelaskan perbedaannya dan kapan sebaiknya Anda memakai masing-masing.",
+      },
+      { type: "h2", text: "Apa Itu Landing Page?" },
+      {
+        type: "p",
+        text: "Landing page adalah satu halaman tunggal yang dirancang untuk satu tujuan spesifik — biasanya konversi: mendaftar atau menghubungi. Tidak ada menu navigasi yang mengalihkan perhatian; seluruh halaman fokus mengarahkan pengunjung pada satu aksi. Landing page paling cocok sebagai 'tempat mendarat' bagi pengunjung yang datang dari iklan atau campaign tertentu.",
+      },
+      { type: "h2", text: "Apa Itu Website (Multi-halaman)?" },
+      {
+        type: "p",
+        text: "Website adalah kumpulan banyak halaman yang membangun kehadiran digital menyeluruh: beranda, daftar paket, profil & legalitas, galeri, artikel, dan kontak. Website berperan sebagai 'kantor digital' travel Anda yang buka 24 jam — membangun kredibilitas, menjadi sumber informasi lengkap, dan fondasi untuk ditemukan di Google.",
+      },
+      { type: "h2", text: "Perbedaan Utama Landing Page vs Website" },
+      {
+        type: "ul",
+        items: [
+          "Tujuan: landing page fokus satu aksi (konversi dari iklan); website membangun kehadiran dan kredibilitas menyeluruh.",
+          "Jumlah halaman: landing page satu halaman; website banyak halaman (beranda, paket, tentang, artikel, kontak).",
+          "Sumber trafik: landing page ideal untuk iklan berbayar dan campaign; website untuk SEO organik dan branding jangka panjang.",
+          "Kekuatan SEO: website jauh lebih kuat (banyak halaman dan konten); landing page tunggal terbatas jangkauannya di pencarian.",
+          "Masa pakai: landing page sering musiman (mengikuti promo); website adalah aset jangka panjang yang terus bekerja.",
+        ],
+      },
+      { type: "h2", text: "Kapan Travel Umroh Butuh Landing Page?" },
+      {
+        type: "ul",
+        items: [
+          "Menjalankan iklan untuk promo spesifik: paket Ramadhan, early bird, atau diskon musiman.",
+          "Menguji satu penawaran tertentu dengan cepat sebelum diperluas.",
+          "Kampanye Google Ads atau Meta Ads yang butuh halaman fokus konversi tinggi.",
+        ],
+      },
+      { type: "h2", text: "Kapan Travel Umroh Butuh Website Penuh?" },
+      {
+        type: "ul",
+        items: [
+          "Membangun kredibilitas resmi dengan menampilkan legalitas PPIU/PIHK dan profil perusahaan.",
+          "Ingin ditemukan calon jamaah lewat pencarian Google secara organik (SEO).",
+          "Menampilkan seluruh katalog paket, galeri, testimoni, dan artikel dalam satu rumah digital.",
+          "Membangun aset jangka panjang yang tidak bergantung pada anggaran iklan terus-menerus.",
+        ],
+      },
+      { type: "h2", text: "Jawaban Terbaik: Keduanya Bekerja Sama" },
+      {
+        type: "p",
+        text: "Ini bukan soal memilih salah satu. Strategi yang matang menjadikan website sebagai fondasi — pusat kredibilitas dan mesin SEO — sementara landing page digunakan untuk setiap campaign iklan agar konversinya maksimal. Website menarik jamaah organik sepanjang waktu; landing page memaksimalkan setiap rupiah anggaran iklan Anda. Keduanya saling melengkapi.",
+      },
+      {
+        type: "tip",
+        text: "Jika anggaran terbatas dan harus memilih lebih dulu, mulailah dari website yang solid. Ia memberi kredibilitas dan trafik organik jangka panjang, dan nanti landing page iklan bisa dibangun di atas fondasi yang sama.",
+      },
+      { type: "h2", text: "Bingung Memilih? Jamnasindo Bantu Tentukan" },
+      {
+        type: "p",
+        text: "Jamnasindo membangun keduanya — landing page yang fokus konversi maupun website travel lengkap yang SEO-ready — dan memahami bisnis travel umroh & haji dari perizinan hingga pemasaran. Kami bantu Anda memilih yang paling tepat sesuai tujuan dan anggaran. Lihat enam contoh karya kami di halaman Portofolio, lalu konsultasikan kebutuhan Anda secara gratis.",
+      },
+    ],
+    cta: {
+      title: "Bingung Pilih Landing Page atau Website?",
+      text: "Jamnasindo membangun keduanya dan membantu Anda menentukan yang paling tepat untuk tujuan pemasaran travel Anda. Konsultasi gratis, atau lihat langsung hasil karya kami.",
+      primaryHref: "/kontak",
+      primaryLabel: "Konsultasi Gratis",
+      secondaryHref: "/portfolio",
+      secondaryLabel: "Lihat Portofolio",
+    },
+  },
+  {
     slug: "digital-marketing-travel-umroh-website",
     title:
       "Digital Marketing Travel Umroh: Mengapa Website adalah Fondasi untuk Mendapatkan Jamaah",
