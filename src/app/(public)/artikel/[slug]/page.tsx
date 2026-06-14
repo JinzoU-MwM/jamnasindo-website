@@ -33,7 +33,6 @@ export function generateMetadata({
       url: `${SITE_URL}/artikel/${article.slug}`,
       type: "article",
       publishedTime: article.date,
-      images: [{ url: "/og.png?v=2", width: 1200, height: 630 }],
     },
   };
 }
