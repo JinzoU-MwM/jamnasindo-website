@@ -1,5 +1,7 @@
 import Database from "better-sqlite3";
 import path from "path";
+import { articles as staticArticles } from "@/lib/articles";
+import { articleToMarkdown } from "@/lib/articleUtils";
 
 const DB_PATH = path.join(process.cwd(), "data.db");
 
@@ -75,6 +77,22 @@ function initTables(db: Database.Database) {
     CREATE TABLE IF NOT EXISTS settings (
       key TEXT PRIMARY KEY,
       value TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS articles (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      slug TEXT NOT NULL UNIQUE,
+      title TEXT NOT NULL,
+      description TEXT NOT NULL DEFAULT '',
+      category TEXT NOT NULL DEFAULT 'Artikel',
+      date TEXT NOT NULL,
+      reading_minutes INTEGER NOT NULL DEFAULT 5,
+      keywords TEXT NOT NULL DEFAULT '[]',
+      content_md TEXT NOT NULL DEFAULT '',
+      cta TEXT,
+      status TEXT NOT NULL DEFAULT 'published',
+      created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now', '+7 hours')),
+      updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now', '+7 hours'))
     );
   `);
 }
@@ -381,8 +399,177 @@ export function updateSettings(data: Record<string, string>) {
   }
 }
 
+export interface ArticleRow {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  date: string;
+  reading_minutes: number;
+  keywords: string; // JSON array
+  content_md: string;
+  cta: string | null; // JSON or null
+  status: string; // published | draft
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ArticleInput {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  date: string;
+  reading_minutes: number;
+  keywords: string[];
+  content_md: string;
+  cta?: Record<string, string> | null;
+  status?: "published" | "draft";
+}
+
+export function getPublishedArticles(): ArticleRow[] {
+  const d = getDb();
+  return d
+    .prepare(
+      "SELECT * FROM articles WHERE status = 'published' ORDER BY date DESC, id DESC",
+    )
+    .all() as ArticleRow[];
+}
+
+export function getPublishedArticleBySlug(slug: string): ArticleRow | undefined {
+  const d = getDb();
+  return d
+    .prepare("SELECT * FROM articles WHERE slug = ? AND status = 'published'")
+    .get(slug) as ArticleRow | undefined;
+}
+
+export function getArticleById(id: number): ArticleRow | undefined {
+  const d = getDb();
+  return d.prepare("SELECT * FROM articles WHERE id = ?").get(id) as
+    | ArticleRow
+    | undefined;
+}
+
+export function getAllArticles(page = 1, limit = 50, search = "") {
+  const d = getDb();
+  const safePage = Math.max(1, page);
+  const safeLimit = Math.min(200, Math.max(1, limit));
+  const offset = (safePage - 1) * safeLimit;
+  const like = `%${search}%`;
+  const where = search ? "WHERE title LIKE ? OR category LIKE ?" : "";
+  const countParams = search ? [like, like] : [];
+  const total = (
+    d
+      .prepare(`SELECT COUNT(*) as count FROM articles ${where}`)
+      .get(...countParams) as { count: number }
+  ).count;
+  const dataParams = search ? [like, like, safeLimit, offset] : [safeLimit, offset];
+  const items = d
+    .prepare(
+      `SELECT id, slug, title, description, category, date, reading_minutes, status, updated_at
+       FROM articles ${where} ORDER BY date DESC, id DESC LIMIT ? OFFSET ?`,
+    )
+    .all(...dataParams) as Array<Omit<ArticleRow, "keywords" | "content_md" | "cta" | "created_at">>;
+  return {
+    items,
+    total,
+    page: safePage,
+    limit: safeLimit,
+    totalPages: Math.max(1, Math.ceil(total / safeLimit)),
+  };
+}
+
+export function slugExists(slug: string, exceptId?: number): boolean {
+  const d = getDb();
+  const row = exceptId
+    ? d.prepare("SELECT id FROM articles WHERE slug = ? AND id != ?").get(slug, exceptId)
+    : d.prepare("SELECT id FROM articles WHERE slug = ?").get(slug);
+  return !!row;
+}
+
+export function insertArticle(data: ArticleInput): ArticleRow {
+  const d = getDb();
+  const result = d
+    .prepare(
+      `INSERT INTO articles (slug, title, description, category, date, reading_minutes, keywords, content_md, cta, status)
+       VALUES (@slug, @title, @description, @category, @date, @reading_minutes, @keywords, @content_md, @cta, @status)`,
+    )
+    .run({
+      slug: data.slug,
+      title: data.title,
+      description: data.description,
+      category: data.category,
+      date: data.date,
+      reading_minutes: data.reading_minutes,
+      keywords: JSON.stringify(data.keywords ?? []),
+      content_md: data.content_md,
+      cta: data.cta ? JSON.stringify(data.cta) : null,
+      status: data.status ?? "published",
+    });
+  return d
+    .prepare("SELECT * FROM articles WHERE id = ?")
+    .get(result.lastInsertRowid) as ArticleRow;
+}
+
+export function updateArticle(id: number, data: Partial<ArticleInput>) {
+  const d = getDb();
+  const fields: string[] = [];
+  const values: unknown[] = [];
+  const push = (col: string, val: unknown) => {
+    fields.push(`${col} = ?`);
+    values.push(val);
+  };
+  if (data.slug !== undefined) push("slug", data.slug);
+  if (data.title !== undefined) push("title", data.title);
+  if (data.description !== undefined) push("description", data.description);
+  if (data.category !== undefined) push("category", data.category);
+  if (data.date !== undefined) push("date", data.date);
+  if (data.reading_minutes !== undefined) push("reading_minutes", data.reading_minutes);
+  if (data.keywords !== undefined) push("keywords", JSON.stringify(data.keywords));
+  if (data.content_md !== undefined) push("content_md", data.content_md);
+  if (data.cta !== undefined) push("cta", data.cta ? JSON.stringify(data.cta) : null);
+  if (data.status !== undefined) push("status", data.status);
+  if (fields.length === 0) return;
+  push("updated_at", new Date().toISOString().replace("T", " ").slice(0, 19));
+  values.push(id);
+  d.prepare(`UPDATE articles SET ${fields.join(", ")} WHERE id = ?`).run(...values);
+}
+
+export function deleteArticle(id: number) {
+  const d = getDb();
+  d.prepare("DELETE FROM articles WHERE id = ?").run(id);
+}
+
+// One-time migration: seed the legacy static articles into the DB as Markdown.
+function seedArticles(d: Database.Database) {
+  const count = (
+    d.prepare("SELECT COUNT(*) as count FROM articles").get() as { count: number }
+  ).count;
+  if (count > 0) return;
+  const stmt = d.prepare(
+    `INSERT INTO articles (slug, title, description, category, date, reading_minutes, keywords, content_md, cta, status)
+     VALUES (@slug, @title, @description, @category, @date, @reading_minutes, @keywords, @content_md, @cta, 'published')`,
+  );
+  for (const a of staticArticles) {
+    stmt.run({
+      slug: a.slug,
+      title: a.title,
+      description: a.description,
+      category: a.category,
+      date: a.date,
+      reading_minutes: a.readingMinutes,
+      keywords: JSON.stringify(a.keywords),
+      content_md: articleToMarkdown(a),
+      cta: a.cta ? JSON.stringify(a.cta) : null,
+    });
+  }
+}
+
 export function seedData() {
   const d = getDb();
+
+  seedArticles(d);
 
   const serviceCount = (d.prepare("SELECT COUNT(*) as count FROM services").get() as { count: number }).count;
   if (serviceCount > 0) return;

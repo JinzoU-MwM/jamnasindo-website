@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { articles } from "@/lib/articles";
+import { getPublishedArticles } from "@/lib/db";
 import { ObservedDiv } from "@/components/ui/ObservedDiv";
+
+export const revalidate = 3600;
 
 // SEO untuk halaman ini
 export const metadata = {
@@ -20,6 +22,8 @@ function formatDate(iso: string): string {
 }
 
 export default function ArtikelPage() {
+  const articles = getPublishedArticles();
+
   return (
     <div className="pt-20">
       {/* pt-20 untuk offset Navbar fixed */}
@@ -42,37 +46,43 @@ export default function ArtikelPage() {
             </div>
           </ObservedDiv>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article, i) => (
-              <ObservedDiv key={article.slug} delay={i * 100}>
-                <Link
-                  href={`/artikel/${article.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-neutral-800 bg-neutral-950 p-8 transition-colors hover:border-lime-400/40"
-                >
-                  <div className="mb-4 flex items-center gap-3 text-xs text-neutral-500">
-                    <span className="rounded-full border border-lime-400/20 bg-lime-400/10 px-3 py-1 font-medium text-lime-400">
-                      {article.category}
-                    </span>
-                    <span>{article.readingMinutes} menit baca</span>
-                  </div>
-                  <h2 className="font-heading font-bold text-xl text-white mb-3 transition-colors group-hover:text-lime-400">
-                    {article.title}
-                  </h2>
-                  <p className="text-sm text-neutral-400 leading-relaxed mb-6 flex-1">
-                    {article.description}
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-neutral-500">
-                    <time dateTime={article.date}>
-                      {formatDate(article.date)}
-                    </time>
-                    <span className="font-medium text-lime-400">
-                      Baca artikel →
-                    </span>
-                  </div>
-                </Link>
-              </ObservedDiv>
-            ))}
-          </div>
+          {articles.length === 0 ? (
+            <p className="text-center text-neutral-500">
+              Belum ada artikel. Nantikan publikasi terbaru kami.
+            </p>
+          ) : (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {articles.map((article, i) => (
+                <ObservedDiv key={article.slug} delay={i * 100}>
+                  <Link
+                    href={`/artikel/${article.slug}`}
+                    className="group flex h-full flex-col rounded-2xl border border-neutral-800 bg-neutral-950 p-8 transition-colors hover:border-lime-400/40"
+                  >
+                    <div className="mb-4 flex items-center gap-3 text-xs text-neutral-500">
+                      <span className="rounded-full border border-lime-400/20 bg-lime-400/10 px-3 py-1 font-medium text-lime-400">
+                        {article.category}
+                      </span>
+                      <span>{article.reading_minutes} menit baca</span>
+                    </div>
+                    <h2 className="font-heading font-bold text-xl text-white mb-3 transition-colors group-hover:text-lime-400">
+                      {article.title}
+                    </h2>
+                    <p className="text-sm text-neutral-400 leading-relaxed mb-6 flex-1">
+                      {article.description}
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-neutral-500">
+                      <time dateTime={article.date}>
+                        {formatDate(article.date)}
+                      </time>
+                      <span className="font-medium text-lime-400">
+                        Baca artikel →
+                      </span>
+                    </div>
+                  </Link>
+                </ObservedDiv>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

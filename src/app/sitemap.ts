@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
-import { articles } from "@/lib/articles";
+import { getPublishedArticles } from "@/lib/db";
 import { serviceCategories } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://jamnas.id";
   const lastModified = new Date();
+  const articles = getPublishedArticles();
   const serviceSlugs = serviceCategories.flatMap((c) =>
     c.services.map((s) => s.id),
   );

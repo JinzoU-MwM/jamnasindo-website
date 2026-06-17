@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Users,
   FileCheck,
+  FileText,
   Settings,
   LogOut,
 } from "lucide-react";
@@ -14,6 +15,7 @@ const navItems = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Klien & Travel", href: "/admin/klien", icon: Users },
   { label: "Tracking Layanan", href: "/admin/layanan", icon: FileCheck },
+  { label: "Manajemen Artikel", href: "/admin/artikel", icon: FileText },
   { label: "Pengaturan", href: "/admin/pengaturan", icon: Settings },
 ];
 

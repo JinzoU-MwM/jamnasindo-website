@@ -1,18 +1,27 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import {
-  articles,
-  getArticle,
-  getRelatedArticles,
-  type ArticleSection,
-} from "@/lib/articles";
+import { getPublishedArticles, getPublishedArticleBySlug } from "@/lib/db";
+import { renderMarkdown } from "@/lib/articleMarkdown";
 import { ObservedDiv } from "@/components/ui/ObservedDiv";
 
 const SITE_URL = "https://jamnas.id";
 
+// ISR safety net; instant updates come via revalidatePath from the admin API.
+export const revalidate = 3600;
+export const dynamicParams = true;
+
 export function generateStaticParams() {
-  return articles.map((article) => ({ slug: article.slug }));
+  return getPublishedArticles().map((a) => ({ slug: a.slug }));
+}
+
+function parseKeywords(json: string): string[] {
+  try {
+    const v = JSON.parse(json);
+    return Array.isArray(v) ? v.map(String) : [];
+  } catch {
+    return [];
+  }
 }
 
 export function generateMetadata({
@@ -20,12 +29,12 @@ export function generateMetadata({
 }: {
   params: { slug: string };
 }): Metadata {
-  const article = getArticle(params.slug);
+  const article = getPublishedArticleBySlug(params.slug);
   if (!article) return {};
   return {
     title: article.title,
     description: article.description,
-    keywords: article.keywords,
+    keywords: parseKeywords(article.keywords),
     alternates: { canonical: `/artikel/${article.slug}` },
     openGraph: {
       title: article.title,
@@ -46,51 +55,13 @@ function formatDate(iso: string): string {
   });
 }
 
-// Renderer untuk tiap tipe section artikel
-function Section({ section }: { section: ArticleSection }) {
-  switch (section.type) {
-    case "h2":
-      return (
-        <h2 className="font-heading font-bold text-2xl md:text-3xl text-white mt-12 mb-4">
-          {section.text}
-        </h2>
-      );
-    case "h3":
-      return (
-        <h3 className="font-heading font-bold text-xl text-white mt-8 mb-3">
-          {section.text}
-        </h3>
-      );
-    case "ul":
-      return (
-        <ul className="list-disc space-y-2 pl-6 text-neutral-300 leading-relaxed mb-6">
-          {section.items.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
-      );
-    case "ol":
-      return (
-        <ol className="list-decimal space-y-2 pl-6 text-neutral-300 leading-relaxed mb-6">
-          {section.items.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ol>
-      );
-    case "tip":
-      return (
-        <div className="my-8 rounded-xl border border-lime-400/30 bg-lime-400/5 p-6">
-          <span className="text-xs font-medium tracking-[0.2em] uppercase text-lime-400 block mb-2">
-            Tips Jamnasindo
-          </span>
-          <p className="text-neutral-200 leading-relaxed">{section.text}</p>
-        </div>
-      );
-    default:
-      return (
-        <p className="text-neutral-300 leading-relaxed mb-6">{section.text}</p>
-      );
-  }
+interface Cta {
+  title?: string;
+  text?: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
 }
 
 export default function ArtikelDetailPage({
@@ -98,10 +69,25 @@ export default function ArtikelDetailPage({
 }: {
   params: { slug: string };
 }) {
-  const article = getArticle(params.slug);
+  const article = getPublishedArticleBySlug(params.slug);
   if (!article) notFound();
 
-  const related = getRelatedArticles(article.slug);
+  const html = renderMarkdown(article.content_md);
+
+  let cta: Cta | null = null;
+  if (article.cta) {
+    try {
+      cta = JSON.parse(article.cta) as Cta;
+    } catch {
+      cta = null;
+    }
+  }
+
+  const others = getPublishedArticles().filter((a) => a.slug !== article.slug);
+  const related = [
+    ...others.filter((a) => a.category === article.category),
+    ...others.filter((a) => a.category !== article.category),
+  ].slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -114,7 +100,7 @@ export default function ArtikelDetailPage({
         dateModified: article.date,
         inLanguage: "id-ID",
         image: `${SITE_URL}/og.png`,
-        keywords: article.keywords.join(", "),
+        keywords: parseKeywords(article.keywords).join(", "),
         articleSection: article.category,
         mainEntityOfPage: `${SITE_URL}/artikel/${article.slug}`,
         author: {
@@ -134,12 +120,7 @@ export default function ArtikelDetailPage({
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Beranda",
-            item: SITE_URL,
-          },
+          { "@type": "ListItem", position: 1, name: "Beranda", item: SITE_URL },
           {
             "@type": "ListItem",
             position: 2,
@@ -178,7 +159,7 @@ export default function ArtikelDetailPage({
               </span>
               <time dateTime={article.date}>{formatDate(article.date)}</time>
               <span>·</span>
-              <span>{article.readingMinutes} menit baca</span>
+              <span>{article.reading_minutes} menit baca</span>
             </div>
             <h1 className="font-heading font-bold text-3xl md:text-5xl tracking-tight text-white mb-6">
               {article.title}
@@ -189,36 +170,46 @@ export default function ArtikelDetailPage({
           </ObservedDiv>
 
           <ObservedDiv>
-            <article>
-              {article.sections.map((section, i) => (
-                <Section key={i} section={section} />
-              ))}
-            </article>
+            <article
+              className="prose prose-invert max-w-none
+                prose-headings:font-heading prose-headings:text-white
+                prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4
+                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+                prose-p:text-neutral-300 prose-p:leading-relaxed
+                prose-li:text-neutral-300 prose-li:marker:text-lime-400
+                prose-a:text-lime-400 prose-a:no-underline hover:prose-a:underline
+                prose-strong:text-white
+                prose-blockquote:border-lime-400 prose-blockquote:bg-lime-400/5
+                prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:text-neutral-200
+                prose-code:text-lime-300
+                prose-img:rounded-xl"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
           </ObservedDiv>
 
           {/* CTA */}
           <ObservedDiv>
             <div className="mt-16 rounded-2xl border border-neutral-800 bg-neutral-950 p-8 text-center">
               <h2 className="font-heading font-bold text-2xl text-white mb-3">
-                {article.cta?.title ?? "Butuh Bantuan Mengurus Perizinan?"}
+                {cta?.title ?? "Butuh Bantuan Mengurus Perizinan?"}
               </h2>
               <p className="text-neutral-400 mb-6">
-                {article.cta?.text ??
+                {cta?.text ??
                   "Tim Jamnasindo siap mendampingi proses perizinan dan administrasi travel umroh & haji Anda dari awal sampai terbit."}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
-                  href={article.cta?.primaryHref ?? "/kontak"}
+                  href={cta?.primaryHref ?? "/kontak"}
                   className="inline-block rounded-full bg-lime-400 px-8 py-3 font-medium text-black transition-colors hover:bg-lime-300"
                 >
-                  {article.cta?.primaryLabel ?? "Konsultasi Gratis"}
+                  {cta?.primaryLabel ?? "Konsultasi Gratis"}
                 </Link>
-                {article.cta?.secondaryHref && (
+                {cta?.secondaryHref && (
                   <Link
-                    href={article.cta.secondaryHref}
+                    href={cta.secondaryHref}
                     className="inline-block rounded-full border border-neutral-700 px-8 py-3 font-medium text-white transition-colors hover:border-lime-400/50"
                   >
-                    {article.cta.secondaryLabel}
+                    {cta.secondaryLabel}
                   </Link>
                 )}
               </div>

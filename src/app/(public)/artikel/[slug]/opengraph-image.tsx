@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { getArticle } from "@/lib/articles";
+import { getPublishedArticleBySlug } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const alt = "Artikel Jamnasindo";
@@ -19,7 +19,7 @@ const logoMark = readFileSync(join(process.cwd(), "public/logo-mark.png"));
 const logoDataUri = `data:image/png;base64,${logoMark.toString("base64")}`;
 
 export default function Image({ params }: { params: { slug: string } }) {
-  const article = getArticle(params.slug);
+  const article = getPublishedArticleBySlug(params.slug);
   const title = article?.title ?? "Artikel — Jamnasindo";
   const category = article?.category ?? "Artikel";
 
