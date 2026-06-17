@@ -120,12 +120,7 @@ export default async function LayananDetailPage(
         category: category.title,
         url: `${SITE_URL}/layanan/${service.id}`,
         areaServed: { "@type": "Country", name: "Indonesia" },
-        provider: {
-          "@type": "Organization",
-          name: "Jamnasindo",
-          legalName: "PT. Jaminan Nasional Indonesia",
-          url: SITE_URL,
-        },
+        provider: { "@id": `${SITE_URL}/#organization` },
       },
       {
         "@type": "BreadcrumbList",

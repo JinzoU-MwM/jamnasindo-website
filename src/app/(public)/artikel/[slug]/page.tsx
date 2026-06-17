@@ -105,19 +105,8 @@ export default async function ArtikelDetailPage(
         keywords: parseKeywords(article.keywords).join(", "),
         articleSection: article.category,
         mainEntityOfPage: `${SITE_URL}/artikel/${article.slug}`,
-        author: {
-          "@type": "Organization",
-          name: "Jamnasindo",
-          url: SITE_URL,
-        },
-        publisher: {
-          "@type": "Organization",
-          name: "PT. Jaminan Nasional Indonesia",
-          logo: {
-            "@type": "ImageObject",
-            url: `${SITE_URL}/logo.png`,
-          },
-        },
+        author: { "@id": `${SITE_URL}/#organization` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
       },
       {
         "@type": "BreadcrumbList",
