@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Users,
@@ -19,6 +19,13 @@ const navItems = [
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await fetch("/api/admin/logout", { method: "POST" });
+    router.replace("/admin/login");
+    router.refresh();
+  };
 
   return (
     <aside className="hidden md:flex w-64 flex-col border-r border-white/5 bg-black">
@@ -60,7 +67,10 @@ export function AdminSidebar() {
 
       {/* Logout */}
       <div className="px-4 py-6 border-t border-white/5">
-        <button className="flex w-full items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:bg-red-400/10 transition-colors">
+        <button
+          onClick={handleLogout}
+          className="flex w-full items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:bg-red-400/10 transition-colors"
+        >
           <LogOut size={18} />
           Keluar
         </button>
