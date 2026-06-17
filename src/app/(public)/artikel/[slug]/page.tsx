@@ -171,6 +171,17 @@ export default async function ArtikelDetailPage(
             </p>
           </ObservedDiv>
 
+          {article.cover_image && (
+            <ObservedDiv>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={article.cover_image}
+                alt={article.title}
+                className="mb-12 w-full rounded-2xl border border-white/5 object-cover"
+              />
+            </ObservedDiv>
+          )}
+
           <ObservedDiv>
             <article
               className="prose prose-invert max-w-none

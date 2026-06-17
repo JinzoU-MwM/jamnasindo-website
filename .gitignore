@@ -30,6 +30,9 @@ data.db
 data.db-shm
 data.db-wal
 
+# user-uploaded images (persist across deploys; served at /uploads/*)
+/public/uploads/
+
 # vercel
 .vercel
 

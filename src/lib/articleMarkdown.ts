@@ -45,6 +45,7 @@ export interface ParsedUpload {
   keywords: string[];
   readingMinutes: number;
   content_md: string;
+  cover_image: string;
 }
 
 function toDateString(v: unknown): string {
@@ -124,5 +125,11 @@ export function parseUpload(raw: string): ParsedUpload {
     keywords: toKeywords(data.keywords ?? data.tags),
     readingMinutes: readingMinutes(body),
     content_md: body.trimEnd() + "\n",
+    cover_image:
+      typeof data.cover === "string"
+        ? data.cover.trim()
+        : typeof data.image === "string"
+          ? data.image.trim()
+          : "",
   };
 }

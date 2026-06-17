@@ -89,12 +89,21 @@ function initTables(db: Database.Database) {
       reading_minutes INTEGER NOT NULL DEFAULT 5,
       keywords TEXT NOT NULL DEFAULT '[]',
       content_md TEXT NOT NULL DEFAULT '',
+      cover_image TEXT,
       cta TEXT,
       status TEXT NOT NULL DEFAULT 'published',
       created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now', '+7 hours')),
       updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now', '+7 hours'))
     );
   `);
+
+  // Migration: add cover_image to articles for DBs created before this column existed.
+  const articleCols = db
+    .prepare("PRAGMA table_info(articles)")
+    .all() as { name: string }[];
+  if (!articleCols.some((c) => c.name === "cover_image")) {
+    db.exec("ALTER TABLE articles ADD COLUMN cover_image TEXT");
+  }
 }
 
 export interface ContactSubmission {
@@ -409,6 +418,7 @@ export interface ArticleRow {
   reading_minutes: number;
   keywords: string; // JSON array
   content_md: string;
+  cover_image: string | null;
   cta: string | null; // JSON or null
   status: string; // published | draft
   created_at: string;
@@ -424,6 +434,7 @@ export interface ArticleInput {
   reading_minutes: number;
   keywords: string[];
   content_md: string;
+  cover_image?: string | null;
   cta?: Record<string, string> | null;
   status?: "published" | "draft";
 }
@@ -467,7 +478,7 @@ export function getAllArticles(page = 1, limit = 50, search = "") {
   const dataParams = search ? [like, like, safeLimit, offset] : [safeLimit, offset];
   const items = d
     .prepare(
-      `SELECT id, slug, title, description, category, date, reading_minutes, status, updated_at
+      `SELECT id, slug, title, description, category, date, reading_minutes, cover_image, status, updated_at
        FROM articles ${where} ORDER BY date DESC, id DESC LIMIT ? OFFSET ?`,
     )
     .all(...dataParams) as Array<Omit<ArticleRow, "keywords" | "content_md" | "cta" | "created_at">>;
@@ -492,8 +503,8 @@ export function insertArticle(data: ArticleInput): ArticleRow {
   const d = getDb();
   const result = d
     .prepare(
-      `INSERT INTO articles (slug, title, description, category, date, reading_minutes, keywords, content_md, cta, status)
-       VALUES (@slug, @title, @description, @category, @date, @reading_minutes, @keywords, @content_md, @cta, @status)`,
+      `INSERT INTO articles (slug, title, description, category, date, reading_minutes, keywords, content_md, cover_image, cta, status)
+       VALUES (@slug, @title, @description, @category, @date, @reading_minutes, @keywords, @content_md, @cover_image, @cta, @status)`,
     )
     .run({
       slug: data.slug,
@@ -504,6 +515,7 @@ export function insertArticle(data: ArticleInput): ArticleRow {
       reading_minutes: data.reading_minutes,
       keywords: JSON.stringify(data.keywords ?? []),
       content_md: data.content_md,
+      cover_image: data.cover_image ?? null,
       cta: data.cta ? JSON.stringify(data.cta) : null,
       status: data.status ?? "published",
     });
@@ -528,6 +540,7 @@ export function updateArticle(id: number, data: Partial<ArticleInput>) {
   if (data.reading_minutes !== undefined) push("reading_minutes", data.reading_minutes);
   if (data.keywords !== undefined) push("keywords", JSON.stringify(data.keywords));
   if (data.content_md !== undefined) push("content_md", data.content_md);
+  if (data.cover_image !== undefined) push("cover_image", data.cover_image);
   if (data.cta !== undefined) push("cta", data.cta ? JSON.stringify(data.cta) : null);
   if (data.status !== undefined) push("status", data.status);
   if (fields.length === 0) return;

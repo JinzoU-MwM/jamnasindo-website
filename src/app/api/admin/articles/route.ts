@@ -64,6 +64,10 @@ export async function POST(req: NextRequest) {
         : readingMinutes(content_md),
     keywords: toKeywords(body.keywords),
     content_md,
+    cover_image:
+      typeof body.cover_image === "string" && body.cover_image.trim()
+        ? body.cover_image.trim()
+        : null,
     status: body.status === "draft" ? "draft" : "published",
   });
 

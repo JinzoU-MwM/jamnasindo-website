@@ -65,6 +65,8 @@ export async function PUT(req: NextRequest, props: { params: Promise<{ id: strin
     if (!c) return NextResponse.json({ error: "Konten artikel kosong." }, { status: 400 });
     patch.content_md = c;
   }
+  if (body.cover_image !== undefined)
+    patch.cover_image = String(body.cover_image).trim() || null;
   if (body.status !== undefined) patch.status = body.status === "draft" ? "draft" : "published";
 
   updateArticle(id, patch);

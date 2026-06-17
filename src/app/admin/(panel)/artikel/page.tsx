@@ -11,6 +11,8 @@ import {
   Save,
   Loader2,
   ExternalLink,
+  Image as ImageIcon,
+  X,
 } from "lucide-react";
 
 interface ListItem {
@@ -20,6 +22,7 @@ interface ListItem {
   category: string;
   date: string;
   reading_minutes: number;
+  cover_image: string | null;
   status: string;
 }
 
@@ -33,6 +36,7 @@ interface FormState {
   keywords: string; // comma-separated in the form
   reading_minutes: string;
   content_md: string;
+  cover_image: string;
   status: "published" | "draft";
 }
 
@@ -45,6 +49,7 @@ const emptyForm = (): FormState => ({
   keywords: "",
   reading_minutes: "",
   content_md: "",
+  cover_image: "",
   status: "published",
 });
 
@@ -57,7 +62,12 @@ export default function AdminArtikelPage() {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [previewHtml, setPreviewHtml] = useState("");
+  const [previewLoading, setPreviewLoading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const coverRef = useRef<HTMLInputElement>(null);
+  const inlineRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
 
   const fetchList = useCallback(async () => {
     setLoading(true);
@@ -75,6 +85,32 @@ export default function AdminArtikelPage() {
     fetchList();
   }, [fetchList]);
 
+  // Debounced live preview — renders Markdown via the same server pipeline.
+  useEffect(() => {
+    if (view !== "form") return;
+    const md = form.content_md;
+    if (!md.trim()) {
+      setPreviewHtml("");
+      return;
+    }
+    const t = setTimeout(async () => {
+      setPreviewLoading(true);
+      try {
+        const res = await fetch("/api/admin/articles/preview", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content: md }),
+        });
+        const data = await res.json();
+        setPreviewHtml(data.html || "");
+      } catch {
+        /* preview is best-effort */
+      }
+      setPreviewLoading(false);
+    }, 400);
+    return () => clearTimeout(t);
+  }, [form.content_md, view]);
+
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((p) => ({ ...p, [k]: e.target.value }));
 
@@ -83,6 +119,52 @@ export default function AdminArtikelPage() {
     setError("");
     setMessage("");
     setView("form");
+  };
+
+  const uploadImage = async (file: File): Promise<string | null> => {
+    setBusy(true);
+    setError("");
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Gagal mengunggah gambar.");
+      return data.url as string;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Gagal mengunggah gambar.");
+      return null;
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const handleCover = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) e.target.value = "";
+    if (!file) return;
+    const url = await uploadImage(file);
+    if (url) setForm((p) => ({ ...p, cover_image: url }));
+  };
+
+  const handleInlineImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) e.target.value = "";
+    if (!file) return;
+    const url = await uploadImage(file);
+    if (!url) return;
+    const alt = file.name.replace(/\.[^.]+$/, "");
+    const snippet = `\n\n![${alt}](${url})\n\n`;
+    setForm((p) => {
+      const ta = contentRef.current;
+      const start = ta?.selectionStart ?? p.content_md.length;
+      const end = ta?.selectionEnd ?? start;
+      return {
+        ...p,
+        content_md:
+          p.content_md.slice(0, start) + snippet + p.content_md.slice(end),
+      };
+    });
   };
 
   const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,6 +192,7 @@ export default function AdminArtikelPage() {
         keywords: Array.isArray(p.keywords) ? p.keywords.join(", ") : "",
         reading_minutes: String(p.readingMinutes || ""),
         content_md: p.content_md || "",
+        cover_image: p.cover_image || "",
         status: "published",
       });
       setMessage(`File "${file.name}" dimuat. Periksa lalu publikasikan.`);
@@ -145,6 +228,7 @@ export default function AdminArtikelPage() {
         keywords: kw.join(", "),
         reading_minutes: String(a.reading_minutes),
         content_md: a.content_md,
+        cover_image: a.cover_image || "",
         status: a.status === "draft" ? "draft" : "published",
       });
       setView("form");
@@ -171,6 +255,7 @@ export default function AdminArtikelPage() {
         keywords: form.keywords,
         reading_minutes: form.reading_minutes,
         content_md: form.content_md,
+        cover_image: form.cover_image,
         status: form.status,
       };
       const res = form.id
@@ -212,7 +297,7 @@ export default function AdminArtikelPage() {
   // ---------- FORM VIEW ----------
   if (view === "form") {
     return (
-      <div className="max-w-4xl space-y-6">
+      <div className="max-w-6xl space-y-6">
         <button
           onClick={() => setView("list")}
           className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white"
@@ -265,18 +350,65 @@ export default function AdminArtikelPage() {
                 <option value="draft">Draf (disembunyikan)</option>
               </select>
             </Field>
+            <Field label="Gambar sampul (cover)" hint="opsional — tampil di header artikel & kartu daftar">
+              <input ref={coverRef} type="file" accept="image/png,image/jpeg,image/webp,image/gif" className="hidden" onChange={handleCover} />
+              {form.cover_image ? (
+                <div className="flex items-center gap-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={form.cover_image} alt="" className="h-20 w-32 rounded-lg border border-white/10 object-cover" />
+                  <button type="button" onClick={() => setForm((p) => ({ ...p, cover_image: "" }))} className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-2 text-sm text-neutral-300 hover:bg-white/5">
+                    <X size={14} /> Hapus
+                  </button>
+                </div>
+              ) : (
+                <button type="button" onClick={() => coverRef.current?.click()} disabled={busy} className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-zinc-800/50 px-4 py-2.5 text-sm text-neutral-300 hover:bg-white/5 disabled:opacity-60">
+                  {busy ? <Loader2 size={16} className="animate-spin" /> : <ImageIcon size={16} />} Unggah cover
+                </button>
+              )}
+            </Field>
           </div>
 
           <div className="rounded-xl border border-white/5 bg-zinc-900 p-6">
-            <Field label="Konten (Markdown)" hint="mendukung # judul, **tebal**, - daftar, > kutipan, [tautan](...)">
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <label className="text-sm font-medium text-neutral-400">
+                Konten (Markdown)
+                <span className="ml-2 text-xs font-normal text-neutral-600">
+                  — # judul, **tebal**, - daftar, &gt; kutipan, [tautan](...)
+                </span>
+              </label>
+              <input ref={inlineRef} type="file" accept="image/png,image/jpeg,image/webp,image/gif" className="hidden" onChange={handleInlineImage} />
+              <button
+                type="button"
+                onClick={() => inlineRef.current?.click()}
+                disabled={busy}
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-lime-400/30 bg-lime-400/10 px-3 py-1.5 text-xs font-medium text-lime-400 hover:bg-lime-400/20 disabled:opacity-60"
+              >
+                {busy ? <Loader2 size={14} className="animate-spin" /> : <ImageIcon size={14} />} Sisipkan gambar
+              </button>
+            </div>
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               <textarea
-                rows={20}
+                ref={contentRef}
+                rows={22}
                 className={`${inputCls} font-mono text-xs leading-relaxed`}
                 value={form.content_md}
                 onChange={set("content_md")}
                 placeholder="Tulis atau tempel Markdown di sini..."
               />
-            </Field>
+              <div className="relative overflow-auto rounded-lg border border-white/10 bg-zinc-950 p-5" style={{ maxHeight: "34rem" }}>
+                {previewLoading && (
+                  <Loader2 size={14} className="absolute right-3 top-3 animate-spin text-neutral-600" />
+                )}
+                {previewHtml ? (
+                  <div
+                    className="prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-white prose-p:text-neutral-300 prose-li:text-neutral-300 prose-li:marker:text-lime-400 prose-a:text-lime-400 prose-strong:text-white prose-blockquote:border-lime-400 prose-blockquote:bg-lime-400/5 prose-blockquote:not-italic prose-blockquote:text-neutral-200 prose-code:text-lime-300 prose-img:rounded-lg"
+                    dangerouslySetInnerHTML={{ __html: previewHtml }}
+                  />
+                ) : (
+                  <p className="text-sm text-neutral-600">Pratinjau langsung muncul di sini saat Anda mengetik atau menyisipkan gambar.</p>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="flex items-center justify-end gap-3">
@@ -354,8 +486,20 @@ export default function AdminArtikelPage() {
               {items.map((item) => (
                 <tr key={item.id} className="hover:bg-white/[0.02]">
                   <td className="px-5 py-3">
-                    <span className="font-medium text-white">{item.title}</span>
-                    <span className="block text-xs text-neutral-600">/{item.slug}</span>
+                    <div className="flex items-center gap-3">
+                      {item.cover_image ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={item.cover_image} alt="" className="h-10 w-14 shrink-0 rounded object-cover" />
+                      ) : (
+                        <div className="flex h-10 w-14 shrink-0 items-center justify-center rounded bg-zinc-800 text-neutral-600">
+                          <FileText size={14} />
+                        </div>
+                      )}
+                      <div>
+                        <span className="font-medium text-white">{item.title}</span>
+                        <span className="block text-xs text-neutral-600">/{item.slug}</span>
+                      </div>
+                    </div>
                   </td>
                   <td className="px-5 py-3 text-neutral-400">{item.category}</td>
                   <td className="px-5 py-3 text-neutral-400">{item.date}</td>

@@ -58,6 +58,14 @@ export default function ArtikelPage() {
                     href={`/artikel/${article.slug}`}
                     className="group flex h-full flex-col rounded-2xl border border-neutral-800 bg-neutral-950 p-8 transition-colors hover:border-lime-400/40"
                   >
+                    {article.cover_image && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={article.cover_image}
+                        alt=""
+                        className="mb-5 h-40 w-full rounded-xl object-cover"
+                      />
+                    )}
                     <div className="mb-4 flex items-center gap-3 text-xs text-neutral-500">
                       <span className="rounded-full border border-lime-400/20 bg-lime-400/10 px-3 py-1 font-medium text-lime-400">
                         {article.category}
