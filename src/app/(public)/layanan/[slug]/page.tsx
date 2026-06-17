@@ -23,11 +23,12 @@ export function generateStaticParams() {
   return serviceCategories.flatMap((c) => c.services.map((s) => ({ slug: s.id })));
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const found = findService(params.slug);
   if (!found) return {};
   const detail = getServiceDetail(params.slug);
@@ -94,11 +95,12 @@ function Section({ section }: { section: ArticleSection }) {
   }
 }
 
-export default function LayananDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function LayananDetailPage(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
   const found = findService(params.slug);
   if (!found) notFound();
   const { service, category } = found;

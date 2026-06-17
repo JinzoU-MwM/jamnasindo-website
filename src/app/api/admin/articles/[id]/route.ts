@@ -20,19 +20,15 @@ function toKeywords(v: unknown): string[] {
   return [];
 }
 
-export async function GET(
-  _req: NextRequest,
-  { params }: { params: { id: string } },
-) {
+export async function GET(_req: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const article = getArticleById(Number(params.id));
   if (!article) return NextResponse.json({ error: "Tidak ditemukan." }, { status: 404 });
   return NextResponse.json({ article });
 }
 
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } },
-) {
+export async function PUT(req: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const id = Number(params.id);
   const existing = getArticleById(id);
   if (!existing) return NextResponse.json({ error: "Tidak ditemukan." }, { status: 404 });
@@ -81,10 +77,8 @@ export async function PUT(
   return NextResponse.json({ ok: true });
 }
 
-export async function DELETE(
-  _req: NextRequest,
-  { params }: { params: { id: string } },
-) {
+export async function DELETE(_req: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const id = Number(params.id);
   const existing = getArticleById(id);
   if (!existing) return NextResponse.json({ error: "Tidak ditemukan." }, { status: 404 });

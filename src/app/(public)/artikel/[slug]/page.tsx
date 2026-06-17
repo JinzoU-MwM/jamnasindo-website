@@ -24,11 +24,12 @@ function parseKeywords(json: string): string[] {
   }
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const article = getPublishedArticleBySlug(params.slug);
   if (!article) return {};
   return {
@@ -64,11 +65,12 @@ interface Cta {
   secondaryLabel?: string;
 }
 
-export default function ArtikelDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function ArtikelDetailPage(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
   const article = getPublishedArticleBySlug(params.slug);
   if (!article) notFound();
 

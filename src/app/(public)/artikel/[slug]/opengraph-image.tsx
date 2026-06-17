@@ -18,8 +18,13 @@ const fontBold = readFileSync(
 const logoMark = readFileSync(join(process.cwd(), "public/logo-mark.png"));
 const logoDataUri = `data:image/png;base64,${logoMark.toString("base64")}`;
 
-export default function Image({ params }: { params: { slug: string } }) {
-  const article = getPublishedArticleBySlug(params.slug);
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const article = getPublishedArticleBySlug(slug);
   const title = article?.title ?? "Artikel — Jamnasindo";
   const category = article?.category ?? "Artikel";
 
