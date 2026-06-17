@@ -8,6 +8,7 @@ import {
   slugExists,
 } from "@/lib/db";
 import { slugify } from "@/lib/articleUtils";
+import { sweepOrphanedUploads } from "@/lib/uploads";
 import type { ArticleInput } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -75,6 +76,7 @@ export async function PUT(req: NextRequest, props: { params: Promise<{ id: strin
   revalidatePath(`/artikel/${existing.slug}`);
   if (patch.slug && patch.slug !== existing.slug) revalidatePath(`/artikel/${patch.slug}`);
   revalidatePath("/sitemap.xml");
+  await sweepOrphanedUploads().catch(() => {});
 
   return NextResponse.json({ ok: true });
 }
@@ -90,6 +92,7 @@ export async function DELETE(_req: NextRequest, props: { params: Promise<{ id: s
   revalidatePath("/artikel");
   revalidatePath(`/artikel/${existing.slug}`);
   revalidatePath("/sitemap.xml");
+  await sweepOrphanedUploads().catch(() => {});
 
   return NextResponse.json({ ok: true });
 }

@@ -294,6 +294,27 @@ export default function AdminArtikelPage() {
     setBusy(false);
   };
 
+  const cleanupUploads = async () => {
+    if (!confirm("Hapus semua gambar yang tidak lagi dipakai artikel mana pun?")) return;
+    setBusy(true);
+    setError("");
+    try {
+      const res = await fetch("/api/admin/uploads/cleanup", { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Gagal membersihkan.");
+      const kb = Math.round((data.freedBytes || 0) / 1024);
+      const n = data.deleted?.length || 0;
+      setMessage(
+        n
+          ? `${n} gambar tak terpakai dihapus${kb ? ` (${kb} KB)` : ""}.`
+          : "Tidak ada gambar tak terpakai.",
+      );
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Gagal membersihkan.");
+    }
+    setBusy(false);
+  };
+
   // ---------- FORM VIEW ----------
   if (view === "form") {
     return (
@@ -437,6 +458,14 @@ export default function AdminArtikelPage() {
         </div>
         <div className="flex items-center gap-3">
           <input ref={fileRef} type="file" accept=".md,.markdown,text/markdown,text/plain" onChange={handleFile} className="hidden" />
+          <button
+            onClick={cleanupUploads}
+            disabled={busy}
+            title="Hapus gambar yang tidak lagi dipakai artikel mana pun"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-4 py-2.5 text-sm text-neutral-300 hover:bg-white/5 disabled:opacity-60"
+          >
+            <Trash2 size={16} /> Bersihkan gambar
+          </button>
           <button
             onClick={() => fileRef.current?.click()}
             disabled={busy}

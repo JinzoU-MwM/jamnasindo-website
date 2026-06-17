@@ -554,6 +554,17 @@ export function deleteArticle(id: number) {
   d.prepare("DELETE FROM articles WHERE id = ?").run(id);
 }
 
+// All fields that may reference an uploaded image — used by the orphan sweep.
+export function getAllArticleSources(): {
+  cover_image: string | null;
+  content_md: string;
+}[] {
+  const d = getDb();
+  return d
+    .prepare("SELECT cover_image, content_md FROM articles")
+    .all() as { cover_image: string | null; content_md: string }[];
+}
+
 // One-time migration: seed the legacy static articles into the DB as Markdown.
 function seedArticles(d: Database.Database) {
   const count = (
