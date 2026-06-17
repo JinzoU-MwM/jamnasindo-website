@@ -151,13 +151,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="antialiased">
+      <head>
+        {/* Global Organization + WebSite JSON-LD — on every page via root layout */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
-      </body>
+      </head>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
