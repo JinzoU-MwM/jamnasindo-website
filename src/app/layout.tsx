@@ -94,7 +94,11 @@ const jsonLd = {
       telephone: "+6281213972604",
       email: "admin@jamnas.id",
       priceRange: "$$",
-      sameAs: ["https://www.google.com/search?kgmid=/g/11v51xwqhz"],
+      sameAs: [
+        "https://www.instagram.com/jamnas.id",
+        "https://wa.me/6281213972604?text=Halo%20Jamnasindo%2C%20saya%20ingin%20konsultasi%20perizinan%20travel%20umroh",
+        "https://www.google.com/search?kgmid=/g/11v51xwqhz",
+      ],
       hasMap: "https://share.google/X29XOELokrZ70DiSa",
       address: {
         "@type": "PostalAddress",
